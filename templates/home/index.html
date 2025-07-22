@@ -1,0 +1,76 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %}TourManager Cartagena - Home{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/tours.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<section class="tours-section">
+    <h2 class="section-title">Nuestros Tours</h2>
+    <div class="tours-grid">
+
+        <!-- Card de ejemplo -->
+        <div class="tour-card">
+            <img src="https://images.pexels.com/photos/813011/pexels-photo-813011.jpeg" alt="Tour al Caribe" class="tour-img">
+            <div class="tour-info">
+                <h3 class="tour-title">Tour al Caribe</h3>
+                <p class="tour-desc">Disfruta de las playas más hermosas con todo incluido.</p>
+                <a href="#" class="btn-tour">Ver más</a>
+            </div>
+        </div>
+
+        <div class="tour-card">
+            <img src="https://images.pexels.com/photos/813011/pexels-photo-813011.jpeg" alt="Montaña Mágica" class="tour-img">
+            <div class="tour-info">
+                <h3 class="tour-title">Montaña Mágica</h3>
+                <p class="tour-desc">Aventura y naturaleza en un solo lugar.</p>
+                <a href="#" class="btn-tour">Ver más</a>
+            </div>
+        </div>
+
+
+        <div class="tour-card">
+            <img src="https://images.pexels.com/photos/813011/pexels-photo-813011.jpeg" alt="Montaña Mágica" class="tour-img">
+            <div class="tour-info">
+                <h3 class="tour-title">Montaña Mágica</h3>
+                <p class="tour-desc">Aventura y naturaleza en un solo lugar.</p>
+                <a href="#" class="btn-tour">Ver más</a>
+            </div>
+        </div>
+
+        <div class="tour-card">
+            <img src="https://images.pexels.com/photos/813011/pexels-photo-813011.jpeg" alt="Montaña Mágica" class="tour-img">
+            <div class="tour-info">
+                <h3 class="tour-title">Montaña Mágica</h3>
+                <p class="tour-desc">Aventura y naturaleza en un solo lugar.</p>
+                <a href="#" class="btn-tour">Ver más</a>
+            </div>
+        </div>
+
+        <div class="tour-card">
+            <img src="https://images.pexels.com/photos/813011/pexels-photo-813011.jpeg" alt="Montaña Mágica" class="tour-img">
+            <div class="tour-info">
+                <h3 class="tour-title">Montaña Mágica</h3>
+                <p class="tour-desc">Aventura y naturaleza en un solo lugar.</p>
+                <a href="#" class="btn-tour">Ver más</a>
+            </div>
+        </div>
+
+        <div class="tour-card">
+            <img src="https://images.pexels.com/photos/813011/pexels-photo-813011.jpeg" alt="Montaña Mágica" class="tour-img">
+            <div class="tour-info">
+                <h3 class="tour-title">Montaña Mágica</h3>
+                <p class="tour-desc">Aventura y naturaleza en un solo lugar.</p>
+                <a href="#" class="btn-tour">Ver más</a>
+            </div>
+        </div>
+
+        <!-- Puedes repetir más cards aquí -->
+
+    </div>
+</section>
+{% endblock %}
