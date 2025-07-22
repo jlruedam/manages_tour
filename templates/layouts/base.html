@@ -11,6 +11,7 @@
 
     <!-- Estilos base -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tours.css' %}">
     
     {% block extra_css %}{% endblock %}
 </head>
@@ -24,8 +25,13 @@
                 <ul class="nav-links">
                     <li><a href="">Inicio</a></li>
                     <li><a href="">Referidos</a></li>
+
+                    {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'accounts:logout' %}">Cerrar sesión</a></li>
+                    {% else %}
                     <li><a href="{% url 'accounts:login' %}">Login</a></li>
-                </ul>
+                    {% endif %}
+            </ul>
             </nav>
         </div>
     </header>

@@ -3,6 +3,10 @@ from .models import Agency, Tour, Client, Vendor, Sale
 from .forms import AgencyForm, TourForm, ClientForm, VendorForm, SaleForm
 from django.contrib import messages
 
+# ========== MENU ==========
+def menu(request):
+    return render(request, 'home/menu.html')
+
 
 # ========== AGENCY ==========
 def agency_list(request):
