@@ -1,6 +1,15 @@
 /* ===================== */
 /* TOURS - CARDS */
 /* ===================== */
+:root {
+  --color-turquoise: #00BFA6;
+  --color-yellow: #FFC107;
+  --color-light-gray: #F4F4F4;
+  --color-dark-gray: #333333;
+  --color-white: #FFFFFF;
+  --color-forest-green: #388E3C;
+}
+
 
 .tours-section {
   padding: 60px 0;

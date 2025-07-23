@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <link rel="stylesheet" href="{% static 'css/background.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
 
     <title>{% block titulo %}Login{% endblock %}</title>
@@ -13,15 +15,16 @@
 </head>
 <body>
     {% block body %}
-    <div class="fondo"></div>
+    <div class="background"></div>
 
-    <div class="div-container">
-        <form class="container" method="post">
+    <!-- <div class="div-container surface"> -->
+    <div class="login surface">
+        <form class="login__form" method="post">
             {% csrf_token %}
-            <h2>Iniciar sesión</h2>
+            <h2 class="login__title titles">Iniciar sesión</h2>
 
-            <input class="inputs" type="text" name="username" id="cedula" placeholder="Cédula">
-            <input class="inputs" type="password" name="password" id="contraseña" placeholder="Contraseña">
+            <input class="login__inputs" type="text" name="username" id="username" placeholder="Usuario">
+            <input class="login__inputs" type="password" name="password" id="password" placeholder="Contraseña">
 
             <!-- <div class="checkbox">
                 <input type="checkbox" name="recordar" id="recordar">
@@ -29,12 +32,12 @@
             </div> -->
 
             <!-- <a href="#">Olvidé mi contraseña</a> -->
-            <button type="submit">Ingresar</button>
+            <button class="login__button" type="submit">Ingresar</button>
             <!-- <a href="#">No tengo una cuenta</a> -->
         </form>
     </div>
 
-    <footer>Copyright 2020. Todos los derechos reservados</footer>
+    <footer class="login__footer">Copyright 2020. Todos los derechos reservados</footer>
     {% endblock %}
 </body>
 </html>

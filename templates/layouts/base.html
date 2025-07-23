@@ -10,13 +10,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto&display=swap" rel="stylesheet">
 
     <!-- Estilos base -->
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" href="{% static 'css/background.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
     <link rel="stylesheet" href="{% static 'css/tours.css' %}">
     
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <header class="container-header">
+    <header class="container-header surface">
         <div class="header">
             <div class="logo">
                 <h1>TourManager</h1>
@@ -36,10 +39,15 @@
         </div>
     </header>
 
-    <main class="container-main">
-        <div class="main">
+    <main class="container-main ">
+        <div class="main surface">
             {% block content %}{% endblock %}
         </div>
     </main>
+
+    <footer class="footer">
+        Copyright 2020. Todos los derechos reservados
+    </footer>
+    
 </body>
 </html>

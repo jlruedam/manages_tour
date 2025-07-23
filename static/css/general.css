@@ -1,0 +1,14 @@
+.surface {
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+
+.titles {
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-turquoise);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
