@@ -19,25 +19,7 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <header class="container-header surface">
-        <div class="header">
-            <div class="logo">
-                <h1>TourManager</h1>
-            </div>
-            <nav class="navbar">
-                <ul class="nav-links">
-                    <li><a href="">Inicio</a></li>
-                    <li><a href="">Referidos</a></li>
-
-                    {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'accounts:logout' %}">Cerrar sesión</a></li>
-                    {% else %}
-                    <li><a href="{% url 'accounts:login' %}">Login</a></li>
-                    {% endif %}
-            </ul>
-            </nav>
-        </div>
-    </header>
+    {% include 'includes/header.html' %}
 
     <main class="container-main ">
         <div class="main surface">
@@ -45,9 +27,7 @@
         </div>
     </main>
 
-    <footer class="footer">
-        Copyright 2020. Todos los derechos reservados
-    </footer>
+    {% include 'includes/footer.html' %}
     
 </body>
 </html>
