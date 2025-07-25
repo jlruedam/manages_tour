@@ -16,9 +16,11 @@
 <body>
     {% block body %}
     <div class="background"></div>
+    <!-- <span class="login__logo"><img class="login__img" src="{% static  'img/logo.png' %}" alt="TM"></span> -->
 
     <!-- <div class="div-container surface"> -->
     <div class="login surface">
+        
         <form class="login__form" method="post">
             {% csrf_token %}
             <h2 class="login__title titles">Iniciar sesión</h2>

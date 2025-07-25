@@ -102,11 +102,13 @@ body {
   min-height: calc(100vh - 100px);
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items:center;
   padding: 40px 0;
+  box-sizing: border-box;
+  flex-wrap: wrap;
 }
 
-.main {
+/* .main {
     width: 80%;
     background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(8px);
@@ -115,7 +117,7 @@ body {
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-}
+} */
 
 /* ===================== */
 /* ENLACES GENERALES */

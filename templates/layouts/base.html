@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
     <link rel="stylesheet" href="{% static 'css/tours.css' %}">
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
     
     {% block extra_css %}{% endblock %}
 </head>
@@ -22,9 +23,7 @@
     {% include 'includes/header.html' %}
 
     <main class="container-main ">
-        <div class="main surface">
-            {% block content %}{% endblock %}
-        </div>
+        {% block content %}{% endblock %}
     </main>
 
     {% include 'includes/footer.html' %}

@@ -12,3 +12,9 @@
     color: var(--color-turquoise);
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 }
+
+.sections {
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+}
