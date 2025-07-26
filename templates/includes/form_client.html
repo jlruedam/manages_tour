@@ -1,0 +1,42 @@
+
+<form method="post" class="form_client">
+    {% csrf_token %}
+
+    <div class="form_client__field">
+        <label for="tipo_doc">Tipo de Documento</label>
+        <select name="tipo_doc" id="tipo_doc" required>
+            <option value="">-- Seleccione --</option>
+            <option value="C.C.">C.C.</option>
+            <option value="T.I.">T.I.</option>
+            <option value="P.P.">P.P.</option>
+            <option value="C.E.">C.E.</option>
+        </select>
+    </div>
+
+    <div class="form_client__field">
+        <label for="num_doc">Número de Documento</label>
+        <input type="text" name="num_doc" id="num_doc" required>
+    </div>
+
+    <div class="form_client__field">
+        <label for="name">Nombre</label>
+        <input type="text" name="name" id="name" required>
+    </div>
+
+    <div class="form_client__field">
+        <label for="email">Correo Electrónico</label>
+        <input type="email" name="email" id="email" required>
+    </div>
+
+    <div class="form_client__field">
+        <label for="tel">Teléfono</label>
+        <input type="text" name="tel" id="tel">
+    </div>
+
+    <div class="form_client__field">
+        <label for="hotel">Hotel</label>
+        <input type="text" name="hotel" id="hotel" required>
+    </div>
+
+    <button type="submit" class="btn">Guardar Cliente</button>
+</form>

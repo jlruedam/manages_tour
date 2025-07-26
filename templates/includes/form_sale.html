@@ -11,7 +11,7 @@
                 <option value="option 2">
                 <option value="option 3">
             </datalist>
-            <input type="button" value="+" title="Agregar nuevo tour" id="openModalTourBtn"/>
+            <input type="button" value=">" title="Agregar nuevo tour" id="openModalTourBtn"/>
         </div>
     </div>
 
@@ -89,8 +89,8 @@
 <div id="modalTour" class="modal">
   <div class="modal-content surface">
     <span class="close" id="closeModalTour">&times;</span>
-    <h3 class="titles">Agregar nuevo tour</h3>
-     Aquí se agrega nuevo tour
+    <h3 class="titles">Seleccionar Tour</h3>
+    {% include 'includes/list_tour.html' %}
   </div>
 </div>
 
@@ -98,7 +98,7 @@
   <div class="modal-content surface">
     <span class="close" id="closeModalClient">&times;</span>
     <h3 class="titles">Agregar nuevo Cliente</h3>
-     Aquí se agrega nuevo Cliente
+    {% include 'includes/form_client.html' %}
   </div>
 </div>
 
