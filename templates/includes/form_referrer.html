@@ -1,0 +1,62 @@
+<form method="post" class="form_referrer">
+    {% csrf_token %}
+
+    <div class="form_referrer__field">
+        <label for="type_doc">Tipo de Documento</label>
+        <select name="type_doc" id="type_doc" required>
+            <option value="">-- Seleccione --</option>
+            <option value="C.C.">C.C.</option>
+            <option value="T.I.">T.I.</option>
+            <option value="C.E.">C.E.</option>
+            <option value="P.P.">P.P.</option>
+        </select>
+    </div>
+
+    <div class="form_referrer__field">
+        <label for="num_doc">Número de Documento</label>
+        <input type="text" name="num_doc" id="num_doc" required>
+    </div>
+
+    <div class="form_referrer__field">
+        <label for="name">Nombre</label>
+        <input type="text" name="name" id="name" required>
+    </div>
+
+    <div class="form_referrer__field">
+        <label for="tel">Teléfono</label>
+        <input type="text" name="tel" id="tel" required>
+    </div>
+
+    <div class="form_referrer__field">
+        <label for="email">Correo Electrónico</label>
+        <input type="email" name="email" id="email" required>
+    </div>
+
+    <div class="form_referrer__field">
+        <label for="client_data">Cliente Referido</label>
+        <input type="text" name="client_data" id="client_data" required>
+    </div>
+
+    <div class="form_referrer__field">
+        <label for="bank">Banco</label>
+        <input type="text" name="bank" id="bank" required>
+    </div>
+
+    <div class="form_referrer__field">
+        <label for="type_count">Tipo de Cuenta</label>
+        <select name="type_count" id="type_count" required>
+            <option value="">-- Seleccione --</option>
+            <option value="Ahorros">Ahorros</option>
+            <option value="Corriente">Corriente</option>
+            <option value="Nequi">Nequi</option>
+            <option value="Daviplata">Daviplata</option>
+        </select>
+    </div>
+
+    <div class="form_referrer__field">
+        <label for="num_count">Número de Cuenta</label>
+        <input type="text" name="num_count" id="num_count" required>
+    </div>
+
+    <button type="submit" class="btn">Guardar Referido</button>
+</form>
