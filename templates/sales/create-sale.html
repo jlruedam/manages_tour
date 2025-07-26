@@ -1,0 +1,23 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Registrar Venta | TourManager{% endblock %}
+
+{% block content %}
+  <div class="sections surface formulario-venta">
+    <h2 class="titles">Registrar Venta</h2>
+    <form method="POST">
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="campo-formulario">
+          {{ field.label_tag }}
+          {{ field }}
+          {% if field.errors %}
+            <div class="error">{{ field.errors|striptags }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <button type="submit" class="btn-submit">Guardar Venta</button>
+    </form>
+  </div>
+{% endblock %}

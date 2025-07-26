@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
     <link rel="stylesheet" href="{% static 'css/tours.css' %}">
     <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form_sales.css' %}">
+    <link rel="stylesheet" href="{% static 'css/modal.css' %}">
     
     {% block extra_css %}{% endblock %}
 </head>
@@ -28,5 +30,7 @@
 
     {% include 'includes/footer.html' %}
     
+    <script src="{% static 'js/modal.js' %}"></script>
+    <script src="{% static 'js/modalTour.js' %}"></script>
 </body>
 </html>

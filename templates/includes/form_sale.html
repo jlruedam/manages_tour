@@ -1,0 +1,95 @@
+<form id="saleForm" class="form_sale">
+    {% csrf_token %}
+
+    <!-- Tour -->
+    <div class="form_sale__field">
+        <label for="input_tour">Tour</label>
+        <div class="input-group">
+            <input list="tourOptions" id="input_tour" name="tour" placeholder="Seleccione o escriba un tour" />
+            <datalist id="tourOptions">
+                <option value="option 1">
+                <option value="option 2">
+                <option value="option 3">
+            </datalist>
+            <input type="button" value="+" title="Agregar nuevo tour" id="openModalTourBtn"/>
+        </div>
+    </div>
+
+    <!-- Cliente -->
+    <div class="form_sale__field">
+        <label for="input_client">Cliente</label>
+        <div class="input-group">
+            <input list="clientOptions" id="input_client" name="client" placeholder="Seleccione o escriba un cliente" />
+            <datalist id="clientOptions">
+                <option value="option 1">
+                <option value="option 2">
+                <option value="option 3">
+            </datalist>
+            <input type="button" value="+" title="Agregar nuevo cliente" />
+        </div>
+    </div>
+
+    <!-- Cerrador -->
+    <div class="form_sale__field">
+        <label for="input_closer">Cerrador</label>
+        <div class="input-group">
+            <input list="closerOptions" id="input_closer" name="closer" placeholder="Seleccione o escriba un cerrador" />
+            <datalist id="closerOptions">
+                <option value="option 1">
+                <option value="option 2">
+                <option value="option 3">
+            </datalist>
+            <input type="button" value="+" title="Agregar nuevo cerrador" />
+        </div>
+    </div>
+
+    <!-- Jalador -->
+    <div class="form_sale__field">
+        <label for="input_referrer">Jalador</label>
+        <div class="input-group">
+            <input list="referrerOptions" id="input_referrer" name="referrer" placeholder="Seleccione o escriba un jalador" />
+            <datalist id="referrerOptions">
+                <option value="option 1">
+                <option value="option 2">
+                <option value="option 3">
+            </datalist>
+            <input type="button" value="+" title="Agregar nuevo jalador" />
+        </div>
+    </div>
+
+    <!-- Valor sugerido y venta -->
+    <div class="form_sale__field">
+        <span>Valor sugerido: $ 100000</span>
+        <label for="input_value">Valor venta tour $</label>
+        <input type="number" id="input_value" name="value" />
+    </div>
+
+    <!-- Cantidad -->
+    <div class="form_sale__field">
+        <label for="input_quantity">Cantidad de tours</label>
+        <input type="number" id="input_quantity" name="quantity" />
+    </div>
+
+    <!-- Total -->
+    <div class="form_sale__field">
+        <label for="input_total">Valor total</label>
+        <input type="number" id="input_total" name="total" />
+    </div>
+
+    <!-- Observaciones -->
+    <div class="form_sale__field">
+        <label for="input_notes">Observaciones</label>
+        <textarea id="input_notes" name="notes"></textarea>
+    </div>
+
+    <!-- Botón Guardar -->
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+
+<div id="modalTour" class="modal">
+  <div class="modal-content surface">
+    <span class="close" id="closeModalTour">&times;</span>
+    <h3 class="titles">Agregar nuevo tour</h3>
+     Aquí se agrega nuevo tour
+  </div>
+</div>

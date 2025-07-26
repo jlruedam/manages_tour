@@ -1,0 +1,63 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Listado de Ventas | TourManager{% endblock %}
+
+{% block content %}
+  <div class="sections surface">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+      <h2 class="titles">Listado de Ventas</h2>
+      <button class="btn-agregar" id="openModalBtn">+ Agregar Venta</button>
+    </div>
+
+    {% if sales %}
+      <div class="tabla-ventas-container">
+        <table class="tabla-ventas">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Tour</th>
+              <th>Cliente</th>
+              <th>Vendedor</th>
+              <th>Referido</th>
+              <th>Valor Unitario</th>
+              <th>Cantidad</th>
+              <th>Total</th>
+              <th>Fecha</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for sale in sales %}
+              <tr>
+                <td>{{ sale.id }}</td>
+                <td>{{ sale.tour.name }}</td>
+                <td>{{ sale.client.name }}</td>
+                <td>{{ sale.vendor.name }}</td>
+                <td>{{ sale.referrer.name }}</td>
+                <td>${{ sale.value_sale_unit|floatformat:2 }}</td>
+                <td>{{ sale.quantity }}</td>
+                <td>${{ sale.total_sale|floatformat:2 }}</td>
+                <td>{{ sale.created_at|date:"d M Y" }}</td>
+                <td>
+                  <a href="{% url 'edit_sale' sale.id %}" class="btn-accion editar">Editar</a>
+                  <a href="{% url 'delete_sale' sale.id %}" class="btn-accion eliminar">Eliminar</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p>No hay ventas registradas aún.</p>
+    {% endif %}
+  </div>
+
+  <!-- Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-content surface">
+    <span class="close" id="closeModal">&times;</span>
+    <h3 class="titles">Agregar nueva venta</h3>
+    {% include 'includes/form_sale.html' %}
+  </div>
+</div>
+{% endblock %}

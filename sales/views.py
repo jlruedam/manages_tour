@@ -2,6 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Agency, Tour, Client, Vendor, Sale
 from .forms import AgencyForm, TourForm, ClientForm, VendorForm, SaleForm
 from django.contrib import messages
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+
 
 # ========== MENU ==========
 def menu(request):
@@ -137,19 +141,45 @@ def vendor_delete(request, pk):
 
 # ========== SALE ==========
 def sale_list(request):
-    sales = Sale.objects.all()
-    return render(request, 'sales/sale_list.html', {'sales': sales})
+    sales = Sale.objects.select_related('tour', 'client', 'vendor', 'referrer').all()
+    form = SaleForm()
+    return render(request, 'sales/sale_list.html', {'sales': sales, 'form': form})
 
-def sale_create(request):
-    if request.method == 'POST':
-        form = SaleForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Venta registrada.")
-            return redirect('sale_list')
+# def sale_create(request):
+#     if request.method == 'POST':
+#         form = SaleForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, "Venta registrada.")
+#             return redirect('sale_list')
+#     else:
+#         form = SaleForm()
+#     return render(request, 'sales/sale_form.html', {'form': form})
+
+# def create_sale(request):
+#     if request.method == 'POST':
+#         form = SaleForm(request.POST)
+#         if form.is_valid():
+#             sale = form.save(commit=False)
+#             # Calculamos el total antes de guardar, si se desea
+#             sale.total_sale = sale.value_sale_unit * sale.quantity
+#             # sale.created_at = now()
+#             # sale.updated_at = now()
+#             sale.save()
+#             return redirect('sale_success')  # Redirige a una vista de éxito
+#     else:
+#         form = SaleForm()
+
+#     return render(request, 'sales/create-sale.html', {'form': form})
+@require_POST
+def create_sale(request):
+    form = SaleForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return JsonResponse({'success': True})
     else:
-        form = SaleForm()
-    return render(request, 'sales/sale_form.html', {'form': form})
+        return JsonResponse({'success': False, 'errors': form.errors}, status=400)
+
 
 def sale_update(request, pk):
     sale = get_object_or_404(Sale, pk=pk)
