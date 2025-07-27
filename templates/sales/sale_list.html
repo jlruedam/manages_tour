@@ -11,7 +11,7 @@
 
     {% if sales %}
       <div class="tabla-ventas-container">
-        <table class="tabla-ventas">
+        <table class="tabla-ventas" id="tabla-ventas-general">
           <thead>
             <tr>
               <th>ID</th>
@@ -30,17 +30,17 @@
             {% for sale in sales %}
               <tr>
                 <td>{{ sale.id }}</td>
-                <td>{{ sale.tour.name }}</td>
+                <td>{{ sale.tour.name_tour }}</td>
                 <td>{{ sale.client.name }}</td>
-                <td>{{ sale.vendor.name }}</td>
+                <td>{{ sale.employee.name }}</td>
                 <td>{{ sale.referrer.name }}</td>
                 <td>${{ sale.value_sale_unit|floatformat:2 }}</td>
                 <td>{{ sale.quantity }}</td>
                 <td>${{ sale.total_sale|floatformat:2 }}</td>
                 <td>{{ sale.created_at|date:"d M Y" }}</td>
                 <td>
-                  <a href="{% url 'edit_sale' sale.id %}" class="btn-accion editar">Editar</a>
-                  <a href="{% url 'delete_sale' sale.id %}" class="btn-accion eliminar">Eliminar</a>
+                  <a href="" class="btn-accion editar">Editar</a>
+                  <a href="" class="btn-accion eliminar">Eliminar</a>
                 </td>
               </tr>
             {% endfor %}

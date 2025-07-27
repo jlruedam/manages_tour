@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Agency, Tour, Client, Vendor, Sale
-from .forms import AgencyForm, TourForm, ClientForm, VendorForm, SaleForm
+from .models import Agency, Tour, Client, Employee, Sale, Role
+from .forms import AgencyForm, TourForm, ClientForm, SaleForm
 from django.contrib import messages
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from django.contrib.auth.models import Group 
 
 
 # ========== MENU ==========
@@ -108,42 +109,51 @@ def client_delete(request, pk):
     return redirect('client_list')
 
 # ========== VENDOR ==========
-def vendor_list(request):
-    vendors = Vendor.objects.all()
-    return render(request, 'vendors/vendor_list.html', {'vendors': vendors})
+# def vendor_list(request):
+#     vendors = Vendor.objects.all()
+#     return render(request, 'vendors/vendor_list.html', {'vendors': vendors})
 
-def vendor_create(request):
-    if request.method == 'POST':
-        form = VendorForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Vendedor creado.")
-            return redirect('vendor_list')
-    else:
-        form = VendorForm()
-    return render(request, 'vendors/vendor_form.html', {'form': form})
+# def vendor_create(request):
+#     if request.method == 'POST':
+#         form = VendorForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, "Vendedor creado.")
+#             return redirect('vendor_list')
+#     else:
+#         form = VendorForm()
+#     return render(request, 'vendors/vendor_form.html', {'form': form})
 
-def vendor_update(request, pk):
-    vendor = get_object_or_404(Vendor, pk=pk)
-    form = VendorForm(request.POST or None, instance=vendor)
-    if form.is_valid():
-        form.save()
-        messages.success(request, "Vendedor actualizado.")
-        return redirect('vendor_list')
-    return render(request, 'vendors/vendor_form.html', {'form': form})
+# def vendor_update(request, pk):
+#     vendor = get_object_or_404(Vendor, pk=pk)
+#     form = VendorForm(request.POST or None, instance=vendor)
+#     if form.is_valid():
+#         form.save()
+#         messages.success(request, "Vendedor actualizado.")
+#         return redirect('vendor_list')
+#     return render(request, 'vendors/vendor_form.html', {'form': form})
 
-def vendor_delete(request, pk):
-    vendor = get_object_or_404(Vendor, pk=pk)
-    vendor.delete()
-    messages.success(request, "Vendedor eliminado.")
-    return redirect('vendor_list')
+# def vendor_delete(request, pk):
+#     vendor = get_object_or_404(Vendor, pk=pk)
+#     vendor.delete()
+#     messages.success(request, "Vendedor eliminado.")
+#     return redirect('vendor_list')
 
 
 # ========== SALE ==========
 def sale_list(request):
-    sales = Sale.objects.select_related('tour', 'client', 'vendor', 'referrer').all()
-    form = SaleForm()
-    return render(request, 'sales/sale_list.html', {'sales': sales, 'form': form})
+    sales = Sale.objects.select_related('tour', 'client', 'employee', 'referrer').all()
+    tours = Tour.objects.all()
+    clients = Client.objects.all()
+
+    vendors = Employee.objects.filter(rol = 1)
+    ctx = {
+        'sales': sales,
+        'tours':tours,
+        'clients':clients,
+        'vendors': vendors
+    }
+    return render(request, 'sales/sale_list.html', ctx)
 
 # def sale_create(request):
 #     if request.method == 'POST':

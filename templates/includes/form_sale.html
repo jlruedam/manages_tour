@@ -7,9 +7,9 @@
         <div class="input-group">
             <input list="tourOptions" id="input_tour" name="tour" placeholder="Seleccione o escriba un tour" />
             <datalist id="tourOptions">
-                <option value="option 1">
-                <option value="option 2">
-                <option value="option 3">
+                {% for tour in tours %}
+                <option value="{{tour.name_tour}}">
+                {% endfor %}
             </datalist>
             <input type="button" value=">" title="Agregar nuevo tour" id="openModalTourBtn"/>
         </div>
@@ -21,9 +21,9 @@
         <div class="input-group">
             <input list="clientOptions" id="input_client" name="client" placeholder="Seleccione o escriba un cliente" />
             <datalist id="clientOptions">
-                <option value="option 1">
-                <option value="option 2">
-                <option value="option 3">
+                {% for client in clients %}
+                <option value="{{client.num_doc}}-{{client.name}}">
+                {% endfor %}
             </datalist>
             <input type="button" value="+" title="Agregar nuevo cliente"  id="openModalClientBtn"/>
         </div>
@@ -35,9 +35,9 @@
         <div class="input-group">
             <input list="closerOptions" id="input_closer" name="closer" placeholder="Seleccione o escriba un cerrador" />
             <datalist id="closerOptions">
-                <option value="option 1">
-                <option value="option 2">
-                <option value="option 3">
+                {% for vendor in vendors %}
+                <option value="{{vendor}}">
+                {% endfor%}
             </datalist>
             <!-- <input type="button" value="+" title="Agregar nuevo cerrador" id="openModalVendorBtn"/> -->
         </div>

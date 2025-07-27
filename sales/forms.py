@@ -1,7 +1,7 @@
 from django import forms
 from .models import (
     Agency, Provider, Referrer, Tour,
-    Client, Vendor, Sale, Payment, Commission
+    Client, Employee, Sale, Payment, Commission
 )
 
 
@@ -39,12 +39,12 @@ class TourForm(forms.ModelForm):
 class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
-        fields = ['tipo_doc', 'num_doc', 'name', 'email', 'tel', 'hotel']
+        fields = ['type_doc', 'num_doc', 'name', 'email', 'tel', 'hotel']
 
 
-class VendorForm(forms.ModelForm):
+class EmployeeForm(forms.ModelForm):
     class Meta:
-        model = Vendor
+        model = Employee
         fields = ['type_doc', 'num_doc', 'name', 'tel', 'email']
 
 
@@ -63,7 +63,7 @@ class SaleForm(forms.ModelForm):
         fields = [
             'tour',
             'client',
-            'vendor',
+            'employee',
             'referrer',
             'value_sale_unit',
             'quantity',
@@ -72,7 +72,7 @@ class SaleForm(forms.ModelForm):
         widgets = {
             'tour': forms.Select(attrs={'class': 'form-control'}),
             'client': forms.Select(attrs={'class': 'form-control'}),
-            'vendor': forms.Select(attrs={'class': 'form-control'}),
+            'employee': forms.Select(attrs={'class': 'form-control'}),
             'referrer': forms.Select(attrs={'class': 'form-control'}),
             'value_sale_unit': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
             'quantity': forms.NumberInput(attrs={'class': 'form-control'}),
@@ -85,7 +85,7 @@ class SaleForm(forms.ModelForm):
         labels = {
             'tour': 'Tour',
             'client': 'Cliente',
-            'vendor': 'Vendedor',
+            'employee': 'Employee',
             'referrer': 'Referido por',
             'value_sale_unit': 'Valor unitario de la venta',
             'quantity': 'Cantidad',

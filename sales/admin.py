@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import (
     Agency, Provider, Referrer, Tour,
-    Client, Vendor, Sale, Payment, Commission
+    Client, Sale, Payment, Commission, Employee, Role
 )
 
 
@@ -37,16 +37,16 @@ class ClientAdmin(admin.ModelAdmin):
     search_fields = ('name', 'num_doc')
 
 
-@admin.register(Vendor)
-class VendorAdmin(admin.ModelAdmin):
+@admin.register(Employee)
+class EmployeeAdmin(admin.ModelAdmin):
     list_display = ('name', 'num_doc', 'email')
     search_fields = ('name', 'num_doc')
 
 
 @admin.register(Sale)
 class SaleAdmin(admin.ModelAdmin):
-    list_display = ('id', 'tour', 'client', 'vendor', 'referrer', 'total_sale')
-    list_filter = ('vendor', 'referrer')
+    list_display = ('id', 'tour', 'client', 'employee', 'referrer', 'total_sale')
+    list_filter = ('employee', 'referrer')
     search_fields = ('id',)
 
 
@@ -61,3 +61,9 @@ class PaymentAdmin(admin.ModelAdmin):
 class CommissionAdmin(admin.ModelAdmin):
     list_display = ('id', 'sale', 'beneficiary_name', 'percentage', 'value_commission')
     search_fields = ('beneficiary_name',)
+
+
+@admin.register(Role)
+class RoleAdmin(admin.ModelAdmin):
+    list_display = ('id', 'role')
+    search_fields = ('role',)

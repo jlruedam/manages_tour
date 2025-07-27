@@ -2,8 +2,20 @@
     <h2 class="section-title">Nuestros Tours</h2>
     <div class="tours-grid">
 
+        {% for tour in tours %}
+            <!-- Card de ejemplo -->
+            <div class="tour-card">
+                <img src="{{tour.image_path}}" alt="Tour al Caribe" class="tour-img">
+                <div class="tour-info">
+                    <h3 class="tour-title">{{tour.name_tour}}</h3>
+                    <p class="tour-desc">{{tour.description}}</p>
+                    <a href="#" class="btn-tour">Ver más</a>
+                </div>
+            </div>
+        {% endfor %}
+
         <!-- Card de ejemplo -->
-        <div class="tour-card">
+        <!-- <div class="tour-card">
             <img src="https://images.pexels.com/photos/813011/pexels-photo-813011.jpeg" alt="Tour al Caribe" class="tour-img">
             <div class="tour-info">
                 <h3 class="tour-title">Tour al Caribe</h3>
@@ -56,7 +68,7 @@
                 <p class="tour-desc">Aventura y naturaleza en un solo lugar.</p>
                 <a href="#" class="btn-tour">Ver más</a>
             </div>
-        </div>
+        </div> -->
 
         <!-- Puedes repetir más cards aquí -->
 

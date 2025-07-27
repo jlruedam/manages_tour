@@ -24,11 +24,11 @@ urlpatterns = [
     path('clients/<int:pk>/edit/', views.client_update, name='client_update'),
     path('clients/<int:pk>/delete/', views.client_delete, name='client_delete'),
 
-    # Vendors
-    path('vendors/', views.vendor_list, name='vendor_list'),
-    path('vendors/create/', views.vendor_create, name='vendor_create'),
-    path('vendors/<int:pk>/edit/', views.vendor_update, name='vendor_update'),
-    path('vendors/<int:pk>/delete/', views.vendor_delete, name='vendor_delete'),
+    # # Vendors
+    # path('vendors/', views.vendor_list, name='vendor_list'),
+    # path('vendors/create/', views.vendor_create, name='vendor_create'),
+    # path('vendors/<int:pk>/edit/', views.vendor_update, name='vendor_update'),
+    # path('vendors/<int:pk>/delete/', views.vendor_delete, name='vendor_delete'),
 
     # Sales
     path('sales/', views.sale_list, name='sale_list'),
