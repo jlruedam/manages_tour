@@ -9,7 +9,8 @@
                 <div class="tour-info">
                     <h3 class="tour-title">{{tour.name_tour}}</h3>
                     <p class="tour-desc">{{tour.description}}</p>
-                    <a href="#" class="btn-tour">Ver más</a>
+                    <a href="#" class="btn-tour" id="select_tour" onclick='select_tour("{{tour.name_tour}}")'>Seleccionar</a>
+                    <!-- <a href="#" class="btn-tour" id="select_tour">Ver más</a> -->
                 </div>
             </div>
         {% endfor %}
