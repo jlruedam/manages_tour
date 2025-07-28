@@ -4,43 +4,45 @@
 
 {% block content %}
   <div class="sections surface">
-    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <div class="sections__header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
       <h2 class="titles">Listado de Ventas</h2>
       <button class="btn-agregar" id="openModalBtn">+ Agregar Venta</button>
     </div>
 
     {% if sales %}
       <div class="tabla-ventas-container">
-        <table class="tabla-ventas" id="tabla-ventas-general">
+        <table class="tabla-ventas display responsive nowrap" id="tabla-ventas-general">
           <thead>
             <tr>
               <th>ID</th>
+              <th>Fecha</th>
               <th>Tour</th>
-              <th>Cliente</th>
+              <th>Agencia</th>
               <th>Vendedor</th>
+              <th>Cliente</th>
               <th>Referido</th>
               <th>Valor Unitario</th>
               <th>Cantidad</th>
               <th>Total</th>
-              <th>Fecha</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             {% for sale in sales %}
               <tr>
-                <td>{{ sale.id }}</td>
+                <td>{{ sale.tour.id}}<a href="" class="btn-accion editar">👁️</a></td>
+                <td>{{ sale.created_at|date:"d M Y" }}</td>
                 <td>{{ sale.tour.name_tour }}</td>
+                <td>{{ sale.tour.agency.name_agency}}</td>
+                <td>{{ sale.employee.name }}<br>({{ sale.employee.agency.name_agency }})</td>
                 <td>{{ sale.client.name }}</td>
-                <td>{{ sale.employee.name }}</td>
                 <td>{{ sale.referrer.name }}</td>
                 <td>${{ sale.value_sale_unit|floatformat:2 }}</td>
                 <td>{{ sale.quantity }}</td>
                 <td>${{ sale.total_sale|floatformat:2 }}</td>
-                <td>{{ sale.created_at|date:"d M Y" }}</td>
                 <td>
-                  <a href="" class="btn-accion editar">Editar</a>
-                  <a href="" class="btn-accion eliminar">Eliminar</a>
+                  <a href="" class="btn-accion editar">📝</a>
+                  <a href="" class="btn-accion eliminar">🗑️</a>
                 </td>
               </tr>
             {% endfor %}

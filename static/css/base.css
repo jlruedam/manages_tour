@@ -102,7 +102,7 @@ body {
   min-height: calc(100vh - 100px);
   display: flex;
   justify-content: center;
-  align-items:center;
+  /* align-items:center; */
   padding: 40px 0;
   box-sizing: border-box;
   flex-wrap: wrap;
