@@ -1,15 +1,16 @@
 
-<form method="post" class="form_client">
+<form method="post" class="form_client" id="formCreateClient" data-url="{% url 'client_create' %}">
     {% csrf_token %}
 
     <div class="form_client__field">
         <label for="tipo_doc">Tipo de Documento</label>
-        <select name="tipo_doc" id="tipo_doc" required>
+        <select name="type_doc" id="type_doc" name="type_doc" required>
             <option value="">-- Seleccione --</option>
-            <option value="C.C.">C.C.</option>
-            <option value="T.I.">T.I.</option>
-            <option value="P.P.">P.P.</option>
-            <option value="C.E.">C.E.</option>
+            <option value="CC">CC</option>
+            <option value="TI">TI</option>
+            <option value="PP">PP</option>
+            <option value="CE">CE</option>
+            <option value="NIT">NIT</option>
         </select>
     </div>
 
