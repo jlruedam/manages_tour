@@ -174,29 +174,64 @@ def sale_list(request):
 #         form = SaleForm()
 #     return render(request, 'sales/sale_form.html', {'form': form})
 
-# def create_sale(request):
-#     if request.method == 'POST':
-#         form = SaleForm(request.POST)
-#         if form.is_valid():
-#             sale = form.save(commit=False)
-#             # Calculamos el total antes de guardar, si se desea
-#             sale.total_sale = sale.value_sale_unit * sale.quantity
-#             # sale.created_at = now()
-#             # sale.updated_at = now()
-#             sale.save()
-#             return redirect('sale_success')  # Redirige a una vista de éxito
-#     else:
-#         form = SaleForm()
-
-#     return render(request, 'sales/create-sale.html', {'form': form})
-@require_POST
 def create_sale(request):
-    form = SaleForm(request.POST)
-    if form.is_valid():
-        form.save()
-        return JsonResponse({'success': True})
-    else:
-        return JsonResponse({'success': False, 'errors': form.errors}, status=400)
+    if request.method == 'POST':
+        response = request.POST
+        print(response)
+        tour = Tour.objects.get(name_tour = response.get('tour'))
+
+        client = str(response.get('client')).split("-")
+        client = Client.objects.get(num_doc  = client[0])
+
+        closer = str(response.get('closer')).split("-")
+        closer = Employee.objects.get(num_doc = closer[0])
+
+        referrer = str(response.get('referrer')).split("-")
+        referrer = Referrer.objects.get(num_doc = referrer[0])
+
+        value = float(response.get('value'))
+        quantity = int(response.get('quantity'))
+        notes = response.get('notes')
+
+        print(tour, client, closer,referrer, value, quantity, notes)
+
+        new_sale = Sale(
+            tour = tour,
+            client = client,
+            employee = closer,
+            referrer = referrer,
+            value_sale_unit = value,
+            quantity = quantity,
+            total_sale = quantity*value,
+            observations = notes
+        )
+        new_sale.save()
+
+        
+        
+        return JsonResponse({
+            'success': True,
+            'message': 'Cliente creado correctamente.',
+            'client': {
+                'num_doc': client.num_doc,
+                'name': client.name,
+                'sale': new_sale.id,
+                'tour':tour.name_tour,
+                'total_sale':new_sale.total_sale
+            }
+        })
+    return JsonResponse({'success': False, 'message': 'Método no permitido'})
+
+        
+    
+# @require_POST
+# def create_sale(request):
+#     form = SaleForm(request.POST)
+#     if form.is_valid():
+#         form.save()
+#         return JsonResponse({'success': True})
+#     else:
+#         return JsonResponse({'success': False, 'errors': form.errors}, status=400)
 
 
 def sale_update(request, pk):

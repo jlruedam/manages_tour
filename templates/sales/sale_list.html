@@ -30,7 +30,7 @@
           <tbody>
             {% for sale in sales %}
               <tr>
-                <td>{{ sale.tour.id}}<a href="" class="btn-accion editar">👁️</a></td>
+                <td>{{sale.id}}</td>
                 <td>{{ sale.created_at|date:"d M Y" }}</td>
                 <td>{{ sale.tour.name_tour }}</td>
                 <td>{{ sale.tour.agency.name_agency}}</td>
@@ -41,6 +41,7 @@
                 <td>{{ sale.quantity }}</td>
                 <td>${{ sale.total_sale|floatformat:2 }}</td>
                 <td>
+                  <a href="" class="btn-accion editar">👁️</a>
                   <a href="" class="btn-accion editar">📝</a>
                   <a href="" class="btn-accion eliminar">🗑️</a>
                 </td>

@@ -78,7 +78,7 @@ class Client(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Actualizado el")
 
     def __str__(self):
-        return f"{self.num_doc}: {self.name}"
+        return f"{self.num_doc}-{self.name}"
 
 
 class Role(models.Model):

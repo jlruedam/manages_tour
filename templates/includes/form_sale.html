@@ -1,4 +1,4 @@
-<form id="saleForm" class="form_sale">
+<form id="saleForm" class="form_sale" data-url="{% url 'sale_create' %}">
     {% csrf_token %}
 
     <!-- Tour -->
@@ -7,9 +7,6 @@
         <div class="input-group">
             <input list="tourOptions" id="input_tour" name="tour" placeholder="Seleccione o escriba un tour" />
             <datalist id="tourOptions">
-                {% for tour in tours %}
-                <option value="{{tour.name_tour}}">
-                {% endfor %}
             </datalist>
             <input type="button" value=">" title="Agregar nuevo tour" id="openModalTourBtn"/>
         </div>
