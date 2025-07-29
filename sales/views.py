@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Agency, Tour, Client, Employee, Sale, Role
+from .models import Agency, Tour, Client, Employee, Sale, Role, Referrer
 from .forms import AgencyForm, TourForm, ClientForm, SaleForm
 from django.contrib import messages
 from django.http import JsonResponse
@@ -151,13 +151,15 @@ def sale_list(request):
     sales = Sale.objects.select_related('tour', 'client', 'employee', 'referrer').all()
     tours = Tour.objects.all()
     clients = Client.objects.all()
+    referrers = Referrer.objects.all()
 
     vendors = Employee.objects.filter(rol = 1)
     ctx = {
         'sales': sales,
         'tours':tours,
         'clients':clients,
-        'vendors': vendors
+        'vendors': vendors,
+        'referrers':referrers
     }
     return render(request, 'sales/sale_list.html', ctx)
 
@@ -211,3 +213,31 @@ def sale_delete(request, pk):
     sale.delete()
     messages.success(request, "Venta eliminada.")
     return redirect('sale_list')
+
+
+def referrer_create(request):
+    if request.method == "POST":
+        type_doc = request.POST.get("type_doc")
+        num_doc = request.POST.get("num_doc")
+        name = request.POST.get("name")
+        tel = request.POST.get("tel")
+
+        if Referrer.objects.filter(num_doc=num_doc).exists():
+            return JsonResponse({'success': False, 'message': 'Ya existe un jalador con ese número de documento.'})
+
+        referrer = Referrer.objects.create(
+            type_doc=type_doc,
+            num_doc=num_doc,
+            name=name,
+            tel=tel
+        )
+
+        return JsonResponse({
+            'success': True,
+            'referrer': {
+                'num_doc': referrer.num_doc,
+                'name': referrer.name
+            }
+        })
+
+    return JsonResponse({'success': False, 'message': 'Petición inválida'})

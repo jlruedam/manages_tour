@@ -49,20 +49,21 @@
         <div class="input-group">
             <input list="referrerOptions" id="input_referrer" name="referrer" placeholder="Seleccione o escriba un jalador" />
             <datalist id="referrerOptions">
-                <option value="option 1">
-                <option value="option 2">
-                <option value="option 3">
+                {% for referrer in referrers %}
+                <option value="{{referrer}}">
+                {% endfor%}
             </datalist>
             <input type="button" value="+" title="Agregar nuevo jalador" id="openModalReferrerBtn"/>
         </div>
     </div>
 
-    <!-- Valor sugerido y venta -->
+    <!-- Valor sugerido -->
     <div class="form_sale__field">
-        <span>Valor sugerido: $ 100000</span>
+        <label for="price_sugested">Precio base</label>
+        <input type="number" id="price_sugested" name="price_sugested"  disabled />
     </div>
 
-    <!-- Valor sugerido y venta -->
+    <!-- Valor venta -->
     <div class="form_sale__field">
         <label for="input_value">Valor venta tour $</label>
         <input type="number" id="sale_value_tour" name="value" />

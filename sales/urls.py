@@ -35,4 +35,7 @@ urlpatterns = [
     path('sales/create/', views.create_sale, name='sale_create'),
     path('sales/<int:pk>/edit/', views.sale_update, name='sale_update'),
     path('sales/<int:pk>/delete/', views.sale_delete, name='sale_delete'),
+
+    # Referrers
+    path('referrers/create/', views.referrer_create, name='referrer_create'),
 ]

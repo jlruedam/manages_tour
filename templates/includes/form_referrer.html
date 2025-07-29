@@ -1,14 +1,15 @@
-<form method="post" class="form_referrer">
+<form method="post" class="form_referrer" id="formCreateReferrer" data-url="{% url 'referrer_create' %}">
     {% csrf_token %}
 
     <div class="form_referrer__field">
         <label for="type_doc">Tipo de Documento</label>
         <select name="type_doc" id="type_doc" required>
             <option value="">-- Seleccione --</option>
-            <option value="C.C.">C.C.</option>
-            <option value="T.I.">T.I.</option>
-            <option value="C.E.">C.E.</option>
-            <option value="P.P.">P.P.</option>
+            <option value="CC">CC</option>
+            <option value="TI">TI</option>
+            <option value="PP">PP</option>
+            <option value="CE">CE</option>
+            <option value="NIT">NIT</option>
         </select>
     </div>
 
