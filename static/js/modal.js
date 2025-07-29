@@ -15,8 +15,10 @@ closeModal.onclick = function() {
 modal.style.display = "none";
 }
 
-// saleForm.addEventListener('submit'
-// )
+saleForm.addEventListener('submit', async (e) => {
+
+    
+});
 
 
 // Cerrar al hacer clic fuera del contenido
