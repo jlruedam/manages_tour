@@ -9,7 +9,13 @@
                 <div class="tour-info">
                     <h3 class="tour-title">{{tour.name_tour}}</h3>
                     <p class="tour-desc">{{tour.description}}</p>
+                    {% if view_sale_list %}
                     <a href="#" class="btn-tour" id="select_tour" onclick='select_tour("{{tour.name_tour}}", "{{tour.price_sale}}")'>Seleccionar</a>
+                    {% endif %}
+                    {% if view_home %}
+                    <a href="{% url 'tour' tour.id %}" class="btn-tour" id="select_tour">Ver más...</a>
+                    {% endif %}
+
                     <!-- <a href="#" class="btn-tour" id="select_tour">Ver más</a> -->
                 </div>
             </div>

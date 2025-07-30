@@ -21,5 +21,4 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
-def home(request):
-    return render(request, 'home/index.html')
+

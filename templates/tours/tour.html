@@ -1,0 +1,28 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %}Detalle del Tour{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/tour.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="tour-detail surface">
+    <div class="tour-image">
+        <img src="{{ tour.image_path }}" alt="Imagen del Tour">
+    </div>
+    <div class="tour-info">
+        <h1 class="tour-title">{{ tour.name_tour }}</h1>
+        <p class="tour-description">{{ tour.description }}</p>
+        <p><strong>Agencia:</strong> {{ tour.agency.name }}</p>
+        <p><strong>Proveedor:</strong> {{ tour.provider.name }}</p>
+        <div class="tour-prices">
+            <p><strong>Precio Venta:</strong> ${{ tour.price_sale }}</p>
+            <p><strong>Precio Total:</strong> ${{ tour.price_total }}</p>
+        </div>
+
+        <a href="/" class="btn-back">← Volver al menú</a>
+    </div>
+</div>
+{% endblock %}

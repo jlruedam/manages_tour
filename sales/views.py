@@ -8,9 +8,105 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.models import Group 
 
 
+
+def home(request):
+    tours = Tour.objects.all()
+    ctx = {
+        'view_home': True,
+        'tours':tours
+    }
+    return render(request, 'home/index.html',ctx)
+
 # ========== MENU ==========
 def menu(request):
     return render(request, 'home/menu.html')
+
+
+# ========== SALE ==========
+def sale_list(request):
+    sales = Sale.objects.select_related('tour', 'client', 'employee', 'referrer').all()
+    tours = Tour.objects.all()
+    clients = Client.objects.all()
+    referrers = Referrer.objects.all()
+
+    vendors = Employee.objects.filter(rol = 1)
+    ctx = {
+        'view_sale_list':True,
+        'sales': sales,
+        'tours':tours,
+        'clients':clients,
+        'vendors': vendors,
+        'referrers':referrers
+    }
+    return render(request, 'sales/sale_list.html', ctx)
+
+def create_sale(request):
+    if request.method == 'POST':
+        response = request.POST
+        print(response)
+        tour = Tour.objects.get(name_tour = response.get('tour'))
+
+        client = str(response.get('client')).split("-")
+        client = Client.objects.get(num_doc  = client[0])
+
+        closer = str(response.get('closer')).split("-")
+        closer = Employee.objects.get(num_doc = closer[0])
+
+        referrer = str(response.get('referrer')).split("-")
+        referrer = Referrer.objects.get(num_doc = referrer[0])
+
+        value = float(response.get('value'))
+        quantity = int(response.get('quantity'))
+        notes = response.get('notes')
+
+        print(tour, client, closer,referrer, value, quantity, notes)
+
+        new_sale = Sale(
+            tour = tour,
+            client = client,
+            employee = closer,
+            referrer = referrer,
+            value_sale_unit = value,
+            quantity = quantity,
+            total_sale = quantity*value,
+            observations = notes
+        )
+        new_sale.save()
+
+        
+        
+        return JsonResponse({
+            'success': True,
+            'message': 'Cliente creado correctamente.',
+            'client': {
+                'num_doc': client.num_doc,
+                'name': client.name,
+                'sale': new_sale.id,
+                'tour':tour.name_tour,
+                'total_sale':new_sale.total_sale
+            }
+        })
+    return JsonResponse({'success': False, 'message': 'Método no permitido'})
+
+# def sale_tour(request, tour_id):
+#     print("ID TOUR:", tour_id )
+#     return render(request, 'sales/sale_tour.html')
+
+def sale_update(request, pk):
+    sale = get_object_or_404(Sale, pk=pk)
+    form = SaleForm(request.POST or None, instance=sale)
+    if form.is_valid():
+        form.save()
+        messages.success(request, "Venta actualizada.")
+        return redirect('sale_list')
+    return render(request, 'sales/sale_form.html', {'form': form})
+
+def sale_delete(request, pk):
+    sale = get_object_or_404(Sale, pk=pk)
+    sale.delete()
+    messages.success(request, "Venta eliminada.")
+    return redirect('sale_list')
+
 
 
 # ========== AGENCY ==========
@@ -46,6 +142,11 @@ def agency_delete(request, pk):
 
 
 # ========== TOUR ==========
+def tour(request,id):
+    print("ID TOUR: ", id)
+    tour = get_object_or_404(Tour, pk=id)
+    return render(request, 'tours/tour.html', {'tour':tour})
+
 def tour_list(request):
     tours = Tour.objects.all()
     return render(request, 'tours/tour_list.html', {'tours': tours})
@@ -146,108 +247,6 @@ def client_delete(request, pk):
 #     return redirect('vendor_list')
 
 
-# ========== SALE ==========
-def sale_list(request):
-    sales = Sale.objects.select_related('tour', 'client', 'employee', 'referrer').all()
-    tours = Tour.objects.all()
-    clients = Client.objects.all()
-    referrers = Referrer.objects.all()
-
-    vendors = Employee.objects.filter(rol = 1)
-    ctx = {
-        'sales': sales,
-        'tours':tours,
-        'clients':clients,
-        'vendors': vendors,
-        'referrers':referrers
-    }
-    return render(request, 'sales/sale_list.html', ctx)
-
-# def sale_create(request):
-#     if request.method == 'POST':
-#         form = SaleForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, "Venta registrada.")
-#             return redirect('sale_list')
-#     else:
-#         form = SaleForm()
-#     return render(request, 'sales/sale_form.html', {'form': form})
-
-def create_sale(request):
-    if request.method == 'POST':
-        response = request.POST
-        print(response)
-        tour = Tour.objects.get(name_tour = response.get('tour'))
-
-        client = str(response.get('client')).split("-")
-        client = Client.objects.get(num_doc  = client[0])
-
-        closer = str(response.get('closer')).split("-")
-        closer = Employee.objects.get(num_doc = closer[0])
-
-        referrer = str(response.get('referrer')).split("-")
-        referrer = Referrer.objects.get(num_doc = referrer[0])
-
-        value = float(response.get('value'))
-        quantity = int(response.get('quantity'))
-        notes = response.get('notes')
-
-        print(tour, client, closer,referrer, value, quantity, notes)
-
-        new_sale = Sale(
-            tour = tour,
-            client = client,
-            employee = closer,
-            referrer = referrer,
-            value_sale_unit = value,
-            quantity = quantity,
-            total_sale = quantity*value,
-            observations = notes
-        )
-        new_sale.save()
-
-        
-        
-        return JsonResponse({
-            'success': True,
-            'message': 'Cliente creado correctamente.',
-            'client': {
-                'num_doc': client.num_doc,
-                'name': client.name,
-                'sale': new_sale.id,
-                'tour':tour.name_tour,
-                'total_sale':new_sale.total_sale
-            }
-        })
-    return JsonResponse({'success': False, 'message': 'Método no permitido'})
-
-        
-    
-# @require_POST
-# def create_sale(request):
-#     form = SaleForm(request.POST)
-#     if form.is_valid():
-#         form.save()
-#         return JsonResponse({'success': True})
-#     else:
-#         return JsonResponse({'success': False, 'errors': form.errors}, status=400)
-
-
-def sale_update(request, pk):
-    sale = get_object_or_404(Sale, pk=pk)
-    form = SaleForm(request.POST or None, instance=sale)
-    if form.is_valid():
-        form.save()
-        messages.success(request, "Venta actualizada.")
-        return redirect('sale_list')
-    return render(request, 'sales/sale_form.html', {'form': form})
-
-def sale_delete(request, pk):
-    sale = get_object_or_404(Sale, pk=pk)
-    sale.delete()
-    messages.success(request, "Venta eliminada.")
-    return redirect('sale_list')
 
 
 def referrer_create(request):

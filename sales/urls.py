@@ -3,8 +3,18 @@ from . import views
 
 urlpatterns = [
 
+    path('', views.home, name='home'),
+    
     # Menu
     path('menu', views.menu, name='menu'),
+
+    # Sales
+    path('sales/', views.sale_list, name='sale_list'),
+    path('sales/create/', views.create_sale, name='sale_create'),
+    # path('sales/sale_tour/<int:tour_id>', views.sale_tour, name='sale_tour'),
+    path('sales/<int:pk>/edit/', views.sale_update, name='sale_update'),
+    path('sales/<int:pk>/delete/', views.sale_delete, name='sale_delete'),
+
 
     # Agencies
     path('agencies/', views.agency_list, name='agency_list'),
@@ -14,6 +24,7 @@ urlpatterns = [
 
     # Tours
     path('tours/', views.tour_list, name='tour_list'),
+    path('tours/tour/<int:id>', views.tour, name='tour'),
     path('tours/create/', views.tour_create, name='tour_create'),
     path('tours/<int:pk>/edit/', views.tour_update, name='tour_update'),
     path('tours/<int:pk>/delete/', views.tour_delete, name='tour_delete'),
@@ -30,12 +41,7 @@ urlpatterns = [
     # path('vendors/<int:pk>/edit/', views.vendor_update, name='vendor_update'),
     # path('vendors/<int:pk>/delete/', views.vendor_delete, name='vendor_delete'),
 
-    # Sales
-    path('sales/', views.sale_list, name='sale_list'),
-    path('sales/create/', views.create_sale, name='sale_create'),
-    path('sales/<int:pk>/edit/', views.sale_update, name='sale_update'),
-    path('sales/<int:pk>/delete/', views.sale_delete, name='sale_delete'),
-
+    
     # Referrers
     path('referrers/create/', views.referrer_create, name='referrer_create'),
 ]

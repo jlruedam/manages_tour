@@ -59,7 +59,6 @@ class Tour(models.Model):
     def __str__(self):
         return self.name_tour
 
-
 class Client(models.Model):
     TYPE_DOC_CHOICES = [
         ('CC', 'Cédula de ciudadanía'),
