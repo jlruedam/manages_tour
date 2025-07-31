@@ -12,8 +12,7 @@ class Agency(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Actualizado el")
 
     def __str__(self):
-        return f"{self.nit}: {self.name_agency}"
-
+        return f"{self.nit}-{self.name_agency}"
 
 class Referrer(models.Model):
     type_doc = models.CharField(max_length=10)
@@ -31,7 +30,6 @@ class Referrer(models.Model):
     def __str__(self):
         return f"{self.num_doc}-{self.name}"
 
-
 class Provider(models.Model):
     nit = models.CharField(max_length=10)
     name_provider = models.CharField(max_length=100)
@@ -42,13 +40,13 @@ class Provider(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Actualizado el")
 
     def __str__(self):
-        return f"{self.nit}: {self.name_provider}"
-
+        return f"{self.nit}-{self.name_provider}"
 
 class Tour(models.Model):
     agency = models.ForeignKey(Agency, on_delete=models.CASCADE, related_name='tours')
     provider = models.ForeignKey(Provider, on_delete=models.CASCADE, related_name='tours')
     name_tour = models.CharField(max_length=100)
+    date_tour = models.DateTimeField(null=True, blank=True, verbose_name="Fecha del Tour")
     description = models.TextField(max_length=500)
     price_sale = models.FloatField()
     price_total = models.FloatField()
@@ -58,6 +56,14 @@ class Tour(models.Model):
 
     def __str__(self):
         return self.name_tour
+
+class TourImage(models.Model):
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='images')
+    image_path = models.CharField(max_length=200)
+    caption = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return f"Imagen de {self.tour.name_tour}"
 
 class Client(models.Model):
     TYPE_DOC_CHOICES = [
@@ -78,7 +84,6 @@ class Client(models.Model):
 
     def __str__(self):
         return f"{self.num_doc}-{self.name}"
-
 
 class Role(models.Model):
     role = models.CharField(max_length=100)
@@ -110,7 +115,6 @@ class Employee(models.Model):
 
     def __str__(self):
         return f"{self.num_doc}-{self.name}"
-
 
 class Sale(models.Model):
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='sales')

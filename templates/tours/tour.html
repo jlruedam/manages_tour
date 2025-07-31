@@ -9,14 +9,23 @@
 
 {% block content %}
 <div class="tour-detail surface">
-    <div class="tour-image">
-        <img src="{{ tour.image_path }}" alt="Imagen del Tour">
+    <div class="tour-gallery">
+        {% for image in tour.images.all %}
+            <div class="tour-image">
+                <img src="{{ image.image_path }}" alt="{{ image.caption|default:'Imagen del tour' }}">
+                {% if image.caption %}
+                    <p class="caption">{{ image.caption }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
     </div>
+
     <div class="tour-info">
         <h1 class="tour-title">{{ tour.name_tour }}</h1>
         <p class="tour-description">{{ tour.description }}</p>
         <p><strong>Agencia:</strong> {{ tour.agency.name }}</p>
         <p><strong>Proveedor:</strong> {{ tour.provider.name }}</p>
+        <p><strong>Fecha:</strong> {{ tour.date_tour }}</p>
         <div class="tour-prices">
             <p><strong>Precio Venta:</strong> ${{ tour.price_sale }}</p>
             <p><strong>Precio Total:</strong> ${{ tour.price_total }}</p>

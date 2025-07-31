@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import (
-    Agency, Provider, Referrer, Tour,
+    Agency, Provider, Referrer, Tour, TourImage,
     Client, Sale, Payment, Commission, Employee, Role
 )
 
@@ -26,8 +26,8 @@ class ReferrerAdmin(admin.ModelAdmin):
 
 @admin.register(Tour)
 class TourAdmin(admin.ModelAdmin):
-    list_display = ('name_tour', 'agency', 'provider', 'price_sale')
-    list_filter = ('agency', 'provider')
+    list_display = ('name_tour', 'date_tour','agency', 'provider', 'price_sale')
+    list_filter = ('agency', 'provider','date_tour')
     search_fields = ('name_tour',)
 
 
@@ -67,3 +67,8 @@ class CommissionAdmin(admin.ModelAdmin):
 class RoleAdmin(admin.ModelAdmin):
     list_display = ('id', 'role')
     search_fields = ('role',)
+
+
+@admin.register(TourImage)
+class TourImageAdmin(admin.ModelAdmin):
+    list_display = ['tour', 'caption']

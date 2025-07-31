@@ -66,6 +66,12 @@
   margin-bottom: 15px;
 }
 
+.tour-date {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
 .btn-tour {
   display: inline-block;
   padding: 8px 16px;
@@ -78,4 +84,5 @@
 
 .btn-tour:hover {
   background-color: var(--color-forest-green);
+  text-decoration: none;
 }

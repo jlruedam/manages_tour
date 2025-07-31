@@ -8,6 +8,7 @@
                 <img src="{{tour.image_path}}" alt="Tour al Caribe" class="tour-img">
                 <div class="tour-info">
                     <h3 class="tour-title">{{tour.name_tour}}</h3>
+                    <p class="tour-date">{{tour.date_tour}}</p>
                     <p class="tour-desc">{{tour.description}}</p>
                     {% if view_sale_list %}
                     <a href="#" class="btn-tour" id="select_tour" onclick='select_tour("{{tour.name_tour}}", "{{tour.price_sale}}")'>Seleccionar</a>
