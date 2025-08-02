@@ -1,0 +1,80 @@
+<form method="post" class="form_payment" id="formCreatePayment" data-url="{% url 'payment_create' %}">
+    {% csrf_token %}
+
+    <!-- Venta asociada -->
+    <!-- <div class="form_sale__field">
+        <label for="sale">Venta</label>
+        <select id="sale" name="sale" required>
+            <option value="{{sale.id}}" selected>{{sale.id}}</option>
+            {% for sale in sales %}
+                <option value="{{ sale.id }}">#{{ sale.id }} - {{ sale.tour.name }}</option>
+            {% endfor %}
+        </select>
+    </div> -->
+
+    <!-- Método de pago -->
+    <div class="form_sale__field">
+        <label for="payment_method">Método de pago</label>
+        <select id="payment_method" name="options_payment" required>
+            <option value="">-- Seleccione un método --</option>
+            <option value="Efectivo">Efectivo</option>
+            <option value="Transferencia">Transferencia</option>
+        </select>
+    </div>
+
+    <!-- Método de pago -->
+    <div class="form_sale__field">
+        <label for="payment_bank">Banco/Plataforma</label>
+        <select id="payment_method" name="options_payment" required>
+            <option value="">-- Seleccione --</option>
+            <option value="Nequi">Nequi</option>
+            <option value="Daviplata">Daviplata</option>
+            <option value="Bancolombia">Bancolombia</option>
+            <option value="Bancolombia">BBVA</option>
+            <option value="Bancolombia">Davivienda</option>
+        </select>
+    </div>
+
+
+    <!-- Valor del abono -->
+    <div class="form_sale__field">
+        <label for="payment_value">Valor del abono</label>
+        <input type="number" id="payment_value" name="value" placeholder="Ingrese el valor abonado" required />
+    </div>
+
+    <!-- Fecha de pago -->
+    <!-- <div class="form_sale__field">
+        <label for="payment_date">Fecha de pago</label>
+        <input type="datetime-local" id="payment_date" name="payment_date" />
+    </div> -->
+
+    <!-- Referencia -->
+    <div class="form_sale__field">
+        <label for="payment_reference">Referencia</label>
+        <input type="text" id="payment_reference" name="payment_reference" placeholder="Referencia del pago" />
+    </div>
+
+    <!-- Confirmado -->
+    <div class="form_sale__field">
+        <label for="confirmed">¿Confirmado?</label>
+        <select id="confirmed" name="confirmed">
+            <option value="false" selected>No</option>
+            <option value="true">Sí</option>
+        </select>
+    </div>
+
+    <!-- Nota -->
+    <div class="form_sale__field">
+        <label for="note">Nota</label>
+        <textarea id="note" name="note" rows="3" placeholder="Ingrese una nota adicional"></textarea>
+    </div>
+
+    <!-- URL documento -->
+    <!-- <div class="form_sale__field">
+        <label for="document_url">URL del documento</label>
+        <input type="url" id="document_url" name="document_url" placeholder="https://..." />
+    </div> -->
+
+    <!-- Botón registrar -->
+    <button type="submit" class="btn btn-success">Registrar Abono</button>
+</form>

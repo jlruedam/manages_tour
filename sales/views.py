@@ -275,3 +275,22 @@ def referrer_create(request):
         })
 
     return JsonResponse({'success': False, 'message': 'Petición inválida'})
+
+
+def payment_create(request):
+    pass
+    # if request.method == 'POST':
+    #     form = ClientForm(request.POST)
+    #     if form.is_valid():
+    #         client = form.save()
+    #         return JsonResponse({
+    #             'success': True,
+    #             'message': 'Cliente creado correctamente.',
+    #             'client': {
+    #                 'num_doc': client.num_doc,
+    #                 'name': client.name
+    #             }
+    #         })
+    #     else:
+    #         return JsonResponse({'success': False, 'message': 'Datos inválidos', 'errors': form.errors})
+    # return JsonResponse({'success': False, 'message': 'Método no permitido'})

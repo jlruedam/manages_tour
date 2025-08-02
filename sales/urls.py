@@ -40,7 +40,9 @@ urlpatterns = [
     # path('vendors/create/', views.vendor_create, name='vendor_create'),
     # path('vendors/<int:pk>/edit/', views.vendor_update, name='vendor_update'),
     # path('vendors/<int:pk>/delete/', views.vendor_delete, name='vendor_delete'),
-
+    # Clients
+    
+    path('payments/create/', views.client_create, name='payment_create'),
     
     # Referrers
     path('referrers/create/', views.referrer_create, name='referrer_create'),

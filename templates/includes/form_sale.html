@@ -5,7 +5,7 @@
     <div class="form_sale__field">
         <label for="input_tour">Tour</label>
         <div class="input-group">
-            <input list="tourOptions" id="input_tour" name="tour" placeholder="Seleccione o escriba un tour" disabled />
+            <input list="tourOptions" id="input_tour" name="tour" placeholder="Seleccione un tour" readonly />
             <datalist id="tourOptions">
             </datalist>
             <input type="button" value=">" title="Agregar nuevo tour" id="openModalTourBtn"/>
@@ -84,6 +84,19 @@
         <textarea id="input_notes" name="notes"></textarea>
     </div>
 
+    <!-- Total Abonos -->
+    <div class="form_sale__field">
+        <label for="total_payments">Total abonado</label>
+        <input type="number" id="total_payments" name="total_payments" disabled />
+        <input type="button" value="+" title="Agregar Abono" id="openModalPaymentBtn"/>
+    </div>
+
+    {% if not payments %}
+      {% include 'includes/table_payments.html' %}
+    {% else %}
+      <p>No hay abonos registrados aún.</p>
+    {% endif %}
+
     <!-- Botón Guardar -->
     <button type="submit" class="btn btn-success">Guardar</button>
 </form>
@@ -117,5 +130,13 @@
     <span class="close" id="closeModalReferrer">&times;</span>
     <h3 class="titles">Agregar nuevo Jalador</h3>
     {% include 'includes/form_referrer.html' %}
+  </div>
+</div>
+
+<div id="modalPayment" class="modal">
+  <div class="modal-content surface">
+    <span class="close" id="closeModalPayment">&times;</span>
+    <h3 class="titles">Agregar Abono</h3>
+    {% include 'includes/form_payment.html' %}
   </div>
 </div>
