@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import Group 
+from django.db.models import Sum
 import json
 
 
@@ -26,6 +27,9 @@ def menu(request):
 # ========== SALE ==========
 def sale_list(request):
     sales = Sale.objects.select_related('tour', 'client', 'employee', 'referrer').all()
+    sales = sales.annotate(
+        total_payments=Sum('payments__value')
+    )
     tours = Tour.objects.all()
     clients = Client.objects.all()
     referrers = Referrer.objects.all()
@@ -108,9 +112,25 @@ def create_sale(request):
         })
     return JsonResponse({'success': False, 'message': 'Método no permitido'})
 
-# def sale_tour(request, tour_id):
-#     print("ID TOUR:", tour_id )
-#     return render(request, 'sales/sale_tour.html')
+def sale_detail_view(request, sale_id):
+    sale = get_object_or_404(Sale, id=sale_id)
+    tour = sale.tour
+    images = tour.images.all()
+    payments = sale.payments.all()
+
+    total_abonado = sum(p.value for p in payments)
+    saldo_pendiente = sale.total_sale - total_abonado
+
+    context = {
+        'sale': sale,
+        'tour': tour,
+        'images': images,
+        'payments': payments,
+        'total_abonado': total_abonado,
+        'saldo_pendiente': saldo_pendiente,
+    }
+    return render(request, 'sales/sale_detail.html', context)
+
 
 def sale_update(request, pk):
     sale = get_object_or_404(Sale, pk=pk)

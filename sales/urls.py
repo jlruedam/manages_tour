@@ -11,6 +11,7 @@ urlpatterns = [
     # Sales
     path('sales/', views.sale_list, name='sale_list'),
     path('sales/create/', views.create_sale, name='sale_create'),
+    path('sales/<int:sale_id>/', views.sale_detail_view, name='sale_detail'),
     # path('sales/sale_tour/<int:tour_id>', views.sale_tour, name='sale_tour'),
     path('sales/<int:pk>/edit/', views.sale_update, name='sale_update'),
     path('sales/<int:pk>/delete/', views.sale_delete, name='sale_delete'),

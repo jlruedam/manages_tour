@@ -130,15 +130,6 @@ class Sale(models.Model):
 
     def __str__(self):
         return f"Sale {self.id}: Tour {self.tour_id}, Client {self.client_id}"
-
-
-# class Payment(models.Model):
-#     sale = models.ForeignKey(Sale, on_delete=models.CASCADE, related_name='payments')
-#     options_payment = models.CharField(max_length=100)
-#     value = models.FloatField()
-#     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Creado el")
-#     updated_at = models.DateTimeField(auto_now=True, verbose_name="Actualizado el")
-
     
 class Payment(models.Model):
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE, related_name='payments')

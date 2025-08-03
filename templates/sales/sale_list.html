@@ -1,4 +1,5 @@
 {% extends 'layouts/base.html' %}
+{% load humanize %}
 
 {% block title %}Listado de Ventas | TourManager{% endblock %}
 
@@ -15,6 +16,7 @@
           <thead>
             <tr>
               <th>ID</th>
+              <th>Detalle</th>
               <th>Fecha</th>
               <th>Tour</th>
               <th>Agencia</th>
@@ -22,29 +24,32 @@
               <th>Cliente</th>
               <th>Referido</th>
               <th>Valor Unitario</th>
+              <th>Total abonado</th>
               <th>Cantidad</th>
               <th>Total</th>
-              <th>Acciones</th>
+              <!-- <th>Detalle</th> -->
             </tr>
           </thead>
           <tbody>
             {% for sale in sales %}
               <tr>
                 <td>{{sale.id}}</td>
+                <td> <a href="{% url 'sale_detail' sale.id %}" class="btn-accion editar">👁️</a></td>
                 <td>{{ sale.created_at|date:"d M Y" }}</td>
                 <td>{{ sale.tour.name_tour }}</td>
                 <td>{{ sale.tour.agency.name_agency}}</td>
                 <td>{{ sale.employee.name }}<br>({{ sale.employee.agency.name_agency }})</td>
                 <td>{{ sale.client.name }}</td>
                 <td>{{ sale.referrer.name }}</td>
-                <td>${{ sale.value_sale_unit|floatformat:2 }}</td>
+                <td>${{ sale.value_sale_unit|floatformat:2|intcomma }}</td>
+                <td>${{ sale.total_payments|default:0|floatformat:2|intcomma }}</td>
                 <td>{{ sale.quantity }}</td>
-                <td>${{ sale.total_sale|floatformat:2 }}</td>
-                <td>
-                  <a href="" class="btn-accion editar">👁️</a>
+                <td>${{ sale.total_sale|floatformat:2|intcomma }}</td>
+                <!-- <td>
+                  <a href="{% url 'sale_detail' sale.id %}" class="btn-accion editar">👁️</a>
                   <a href="" class="btn-accion editar">📝</a>
                   <a href="" class="btn-accion eliminar">🗑️</a>
-                </td>
+                </td> -->
               </tr>
             {% endfor %}
           </tbody>

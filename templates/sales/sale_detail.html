@@ -1,0 +1,71 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Vincula el CSS personalizado para esta vista -->
+<link rel="stylesheet" href="{% static 'css/sale_detail.css' %}">
+<div class="sale_detail">
+    <h2>Detalle de la Venta #{{ sale.id }}</h2>
+
+    <section class="card surface">
+        <h3>Información del Cliente</h3>
+        <p><strong>Nombre:</strong> {{ sale.client.name }}</p>
+        <p><strong>Documento:</strong> {{ sale.client.type_doc }} {{ sale.client.num_doc }}</p>
+        <p><strong>Email:</strong> {{ sale.client.email }}</p>
+        <p><strong>Teléfono:</strong> {{ sale.client.tel }}</p>
+    </section>
+
+    <section class="card surface">
+    <h3>Detalles del Tour</h3>
+    <p><strong>Nombre:</strong> {{ tour.name_tour }}</p>
+    <p><strong>Fecha:</strong> {{ tour.date_tour }}</p>
+    <p><strong>Descripción:</strong> {{ tour.description }}</p>
+    <p><strong>Precio por unidad:</strong> ${{ sale.value_sale_unit }}</p>
+    <p><strong>Cantidad:</strong> {{ sale.quantity }}</p>
+    <p><strong>Total de la venta:</strong> ${{ sale.total_sale }}</p>
+    <p><strong>Observaciones:</strong> {{ sale.observations }}</p>
+
+    {% if images %}
+        <div class="tour-images">
+        {% for image in images %}
+            <div class="tour-image">
+            <img src="{{ image.image_path }}" alt="{{ image.caption }}">
+            {% if image.caption %}<small>{{ image.caption }}</small>{% endif %}
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+    </section>
+
+    <section class="card surface">
+    <h3>Abonos Realizados</h3>
+    {% if payments %}
+        {% for payment in payments %}
+        <div class="payment-card">
+            <p><strong>Fecha:</strong> {{ payment.payment_date }}</p>
+            <p><strong>Método de pago:</strong> {{ payment.options_payment }}</p>
+            {% if payment.bank_platform %}
+            <p><strong>Banco / Plataforma:</strong> {{ payment.bank_platform }}</p>
+            {% endif %}
+            <p><strong>Valor:</strong> ${{ payment.value }}</p>
+            <p><strong>Referencia:</strong> {{ payment.payment_reference }}</p>
+            <p><strong>Confirmado:</strong> {{ payment.confirmed|yesno:"Sí,No" }}</p>
+            {% if payment.note %}
+            <p><strong>Nota:</strong> {{ payment.note }}</p>
+            {% endif %}
+            {% if payment.document_url %}
+            <p><a href="{{ payment.document_url }}" target="_blank">Ver documento</a></p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No se han registrado abonos aún.</p>
+    {% endif %}
+
+    <p><strong>Total Abonado:</strong> ${{ total_abonado }}</p>
+    <p><strong>Saldo Pendiente:</strong> ${{ saldo_pendiente }}</p>
+    </section>
+
+</div>
+
+{% endblock %}
