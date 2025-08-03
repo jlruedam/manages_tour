@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Agency, Tour, Client, Employee, Sale, Role, Referrer
+from .models import Agency, Tour, Client, Employee, Sale, Role, Referrer, Payment
 from .forms import AgencyForm, TourForm, ClientForm, SaleForm
 from django.contrib import messages
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import Group 
+import json
 
 
 
@@ -42,8 +43,16 @@ def sale_list(request):
 
 def create_sale(request):
     if request.method == 'POST':
+
         response = request.POST
         print(response)
+
+        payments_json = request.POST.get('payments', '[]')
+        payments_data = json.loads(payments_json)
+
+        print(payments_json)
+
+
         tour = Tour.objects.get(name_tour = response.get('tour'))
 
         client = str(response.get('client')).split("-")
@@ -73,12 +82,23 @@ def create_sale(request):
         )
         new_sale.save()
 
+        for payment in payments_data:
+            Payment.objects.create(
+                sale=new_sale,  # la venta creada
+                options_payment=payment['options_payment'],
+                value=payment['value'],
+                payment_date=payment['payment_date'],
+                payment_reference=payment['payment_reference'],
+                confirmed=payment['confirmed'],
+                note=payment['note'],
+                document_url=payment['document_url']
+            )
         
         
         return JsonResponse({
             'success': True,
-            'message': 'Cliente creado correctamente.',
-            'client': {
+            'message': 'Venta creada correctamente.',
+            'sale': {
                 'num_doc': client.num_doc,
                 'name': client.name,
                 'sale': new_sale.id,

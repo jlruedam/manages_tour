@@ -22,6 +22,7 @@ saleForm.addEventListener('submit', async (e) => {
     const formData = new FormData(saleForm);
     const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     const url = saleForm.dataset.url;
+    formData.append('payments', JSON.stringify(window.paymentsList));
 
     try {
         const response = await fetch(url, {

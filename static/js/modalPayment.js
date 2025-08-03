@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const totalPaymentsInput = document.getElementById("total_payments");
   const paymentsContainer = document.getElementById("paymentsContainer");
 
-  let paymentsList = [];
+  window.paymentsList = [];
   let paymentIdCounter = 1;
 
   // Abrir modal
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
       document_url: formData.get("document_url") || ""
     };
 
-    paymentsList.push(payment);
+    window.paymentsList.push(payment);
 
     const card = crearTarjetaAbono(payment);
     paymentsContainer.appendChild(card);
