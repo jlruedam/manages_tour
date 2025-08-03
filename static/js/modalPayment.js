@@ -21,36 +21,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Crear tarjeta HTML
   function crearTarjetaAbono(payment) {
-  const card = document.createElement("div");
-  card.className = "relative bg-white shadow-lg rounded-xl p-5 border border-gray-200 hover:shadow-xl transition-shadow duration-300";
+    const card = document.createElement("div");
+    card.className = "payment-card";
 
-  card.innerHTML = `
-    <button data-id="${payment.id}" class="absolute top-3 right-3 text-red-500 hover:text-red-700 text-xl eliminar-abono" title="Eliminar abono">×</button>
+    card.innerHTML = `
+      <button data-id="${payment.id}" class="delete-payment-button" title="Eliminar abono">×</button>
+      <div class="payment-info">
+        <h3>Abono #${payment.id}</h3>
+        <p><strong>Fecha:</strong> ${payment.payment_date}</p>
+        <p><strong>Tour:</strong> ${payment.tour}</p>
+        <p><strong>Forma de pago:</strong> ${payment.options_payment}</p>
+        <p><strong>Valor:</strong> <span class="payment-value">$${payment.value.toLocaleString()}</span></p>
+        <p><strong>Referencia:</strong> ${payment.payment_reference}</p>
+        <p><strong>Confirmado:</strong> 
+          ${payment.confirmed === "Sí"
+            ? '<span class="confirmed-yes">Sí</span>'
+            : '<span class="confirmed-no">No</span>'}
+        </p>
+        ${payment.note ? `<p><strong>Nota:</strong> ${payment.note}</p>` : ''}
+        ${payment.document_url
+          ? `<p><a href="${payment.document_url}" target="_blank" class="payment-link">Ver documento</a></p>`
+          : ""}
+      </div>
+    `;
 
-    <div class="space-y-1">
-      <h3 class="text-lg font-semibold text-gray-800">Abono #${payment.id}</h3>
-      <p class="text-sm text-gray-600"><span class="font-medium">Fecha:</span> ${payment.payment_date}</p>
-      <p class="text-sm text-gray-600"><span class="font-medium">Tour:</span> ${payment.tour}</p>
-      <p class="text-sm text-gray-600"><span class="font-medium">Forma de pago:</span> ${payment.options_payment}</p>
-      <p class="text-sm text-gray-600"><span class="font-medium">Valor:</span> <span class="text-green-600 font-semibold">$${payment.value.toLocaleString()}</span></p>
-      <p class="text-sm text-gray-600"><span class="font-medium">Referencia:</span> ${payment.payment_reference}</p>
-      <p class="text-sm text-gray-600"><span class="font-medium">Confirmado:</span> 
-        ${payment.confirmed === "Sí"
-          ? '<span class="text-green-600 font-semibold">Sí</span>'
-          : '<span class="text-red-600 font-semibold">No</span>'}
-      </p>
-      ${payment.note ? `<p class="text-sm text-gray-600"><span class="font-medium">Nota:</span> ${payment.note}</p>` : ''}
-      ${
-        payment.document_url
-          ? `<p class="text-sm"><a href="${payment.document_url}" target="_blank" class="text-blue-600 hover:underline font-medium">Ver documento</a></p>`
-          : ""
-      }
-    </div>
-  `;
-
-  return card;
-}
-
+    return card;
+  }
 
   // Agregar abono
   formCreatePayment.addEventListener("submit", function (e) {
@@ -72,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     paymentsList.push(payment);
 
-    // Mostrar tarjeta
     const card = crearTarjetaAbono(payment);
     paymentsContainer.appendChild(card);
 
@@ -84,10 +79,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Delegar evento para eliminar tarjetas
   paymentsContainer.addEventListener("click", function (e) {
-    if (e.target.classList.contains("eliminar-abono")) {
+    if (e.target.classList.contains("delete-payment-button")) {
       const id = parseInt(e.target.dataset.id);
       paymentsList = paymentsList.filter(p => p.id !== id);
-      e.target.closest("div").remove();
+      e.target.closest(".payment-card").remove();
       actualizarTotalPagos();
     }
   });

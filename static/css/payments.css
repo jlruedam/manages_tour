@@ -1,0 +1,73 @@
+/* Contenedor flexible para las cards */
+#paymentsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: flex-start;
+}
+
+/* Card individual */
+.payment-card {
+  position: relative;
+  background-color: #fff;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  border: 1px solid #e5e7eb; /* gray-200 */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 320px;
+  flex: 1 1 280px;
+}
+
+.payment-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Botón eliminar */
+.payment-card .eliminar-abono {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  color: #ef4444; /* red-500 */
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.payment-card .eliminar-abono:hover {
+  color: #b91c1c; /* red-700 */
+}
+
+/* Texto */
+.payment-card h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937; /* gray-800 */
+  margin-bottom: 0.25rem;
+}
+
+.payment-card p {
+  font-size: 0.875rem;
+  color: #4b5563; /* gray-600 */
+  margin: 0.25rem 0;
+}
+
+.payment-card span.font-medium {
+  font-weight: 500;
+}
+
+.payment-card .text-green-600 {
+  color: #16a34a;
+}
+
+.payment-card .text-red-600 {
+  color: #dc2626;
+}
+
+.payment-card .text-blue-600 {
+  color: #2563eb;
+}
