@@ -52,9 +52,49 @@ class SaleAdmin(admin.ModelAdmin):
 
 @admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'sale', 'options_payment', 'value')
-    list_filter = ('options_payment',)
-    search_fields = ('sale__id',)
+    list_display = (
+        'id',
+        'sale',
+        'options_payment',
+        'bank_platform',
+        'value',
+        'payment_date',
+        'confirmed',
+        'payment_reference',
+        'created_at',
+    )
+    list_filter = (
+        'options_payment',
+        'bank_platform',
+        'confirmed',
+        'created_at',
+    )
+    search_fields = (
+        'sale__id',
+        'payment_reference',
+        'note',
+        'document_url',
+    )
+    ordering = ('-created_at',)
+    readonly_fields = ('created_at', 'updated_at', 'payment_date')
+    date_hierarchy = 'created_at'
+    fieldsets = (
+        (None, {
+            'fields': (
+                'sale',
+                'options_payment',
+                'bank_platform',
+                'value',
+                'payment_date',
+                'payment_reference',
+                'confirmed',
+                'note',
+                'document_url',
+                'created_at',
+                'updated_at',
+            )
+        }),
+    )
 
 
 @admin.register(Commission)

@@ -31,9 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
     <button data-id="${payment.id}" class="delete-payment-button" title="Eliminar abono">×</button>
     <div class="payment-info">
       <h3>Abono #${payment.id}</h3>
-      <p><strong>Fecha:</strong> ${payment.payment_date}</p>
       <p><strong>Forma de pago:</strong> ${payment.options_payment}</p>
-      <p><strong>Plataforma:</strong> ${payment.options_banks}</p>
+      <p><strong>Plataforma:</strong> ${payment.options_bank}</p>
       <p><strong>Valor:</strong> <span class="payment-value">$${payment.value.toLocaleString()}</span></p>
       <p><strong>Referencia:</strong> ${payment.payment_reference}</p>
       ${payment.note ? `<p><strong>Nota:</strong> ${payment.note}</p>` : ''}
@@ -52,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const payment = {
       id: paymentIdCounter++,
       payment_date: formData.get("payment_date") || "-",
-      options_banks: formData.get("options_banks") || "-",
+      options_bank: formData.get("options_bank") || "-",
       options_payment: formData.get("options_payment") || "-",
       value: parseFloat(formData.get("value")) || 0,
       payment_reference: formData.get("payment_reference") || "-",

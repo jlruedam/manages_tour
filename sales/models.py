@@ -143,10 +143,11 @@ class Sale(models.Model):
 class Payment(models.Model):
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE, related_name='payments')
     options_payment = models.CharField(max_length=100)
+    bank_platform = models.CharField(max_length=100, blank=True)
     value = models.FloatField()
-    payment_date = models.DateTimeField(null=True, blank=True)
+    payment_date = models.DateTimeField(auto_now_add=True,null=True, blank=True)
     payment_reference = models.CharField(max_length=100, blank=True)
-    confirmed = models.BooleanField(default=False)
+    confirmed = models.BooleanField(default=True)
     note = models.TextField(blank=True)
     document_url = models.URLField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Creado el")
