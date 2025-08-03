@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const totalPaymentsInput = document.getElementById("total_payments");
   const paymentsContainer = document.getElementById("paymentsContainer");
 
+  const paymentMethodSelect = document.getElementById("payment_method");
+  const bankPlatformField = document.getElementById("bankPlatformField");
+
   window.paymentsList = [];
   let paymentIdCounter = 1;
 
@@ -25,25 +28,17 @@ document.addEventListener('DOMContentLoaded', function () {
     card.className = "payment-card";
 
     card.innerHTML = `
-      <button data-id="${payment.id}" class="delete-payment-button" title="Eliminar abono">×</button>
-      <div class="payment-info">
-        <h3>Abono #${payment.id}</h3>
-        <p><strong>Fecha:</strong> ${payment.payment_date}</p>
-        <p><strong>Tour:</strong> ${payment.tour}</p>
-        <p><strong>Forma de pago:</strong> ${payment.options_payment}</p>
-        <p><strong>Valor:</strong> <span class="payment-value">$${payment.value.toLocaleString()}</span></p>
-        <p><strong>Referencia:</strong> ${payment.payment_reference}</p>
-        <p><strong>Confirmado:</strong> 
-          ${payment.confirmed === "Sí"
-            ? '<span class="confirmed-yes">Sí</span>'
-            : '<span class="confirmed-no">No</span>'}
-        </p>
-        ${payment.note ? `<p><strong>Nota:</strong> ${payment.note}</p>` : ''}
-        ${payment.document_url
-          ? `<p><a href="${payment.document_url}" target="_blank" class="payment-link">Ver documento</a></p>`
-          : ""}
-      </div>
-    `;
+    <button data-id="${payment.id}" class="delete-payment-button" title="Eliminar abono">×</button>
+    <div class="payment-info">
+      <h3>Abono #${payment.id}</h3>
+      <p><strong>Fecha:</strong> ${payment.payment_date}</p>
+      <p><strong>Forma de pago:</strong> ${payment.options_payment}</p>
+      <p><strong>Plataforma:</strong> ${payment.options_banks}</p>
+      <p><strong>Valor:</strong> <span class="payment-value">$${payment.value.toLocaleString()}</span></p>
+      <p><strong>Referencia:</strong> ${payment.payment_reference}</p>
+      ${payment.note ? `<p><strong>Nota:</strong> ${payment.note}</p>` : ''}
+    </div>
+  `;
 
     return card;
   }
@@ -57,13 +52,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const payment = {
       id: paymentIdCounter++,
       payment_date: formData.get("payment_date") || "-",
-      tour: document.getElementById("input_tour").value || "-",
+      options_banks: formData.get("options_banks") || "-",
       options_payment: formData.get("options_payment") || "-",
       value: parseFloat(formData.get("value")) || 0,
       payment_reference: formData.get("payment_reference") || "-",
-      confirmed: formData.get("confirmed") === "true" ? "Sí" : "No",
+      // confirmed: formData.get("confirmed") === "true" ? "Sí" : "No",
       note: formData.get("note") || "-",
-      document_url: formData.get("document_url") || ""
+      // document_url: formData.get("document_url") || ""
     };
 
     window.paymentsList.push(payment);
@@ -91,4 +86,24 @@ document.addEventListener('DOMContentLoaded', function () {
     const total = paymentsList.reduce((sum, p) => sum + p.value, 0);
     totalPaymentsInput.value = total.toFixed(2);
   }
+  // Función para mostrar u ocultar el campo según el método
+  function toggleBankPlatformField() {
+    const selectedMethod = paymentMethodSelect.value;
+    const bankSelect = document.getElementById("payment_bank");
+    if (selectedMethod === "Transferencia") {
+      bankPlatformField.style.display = "block";
+      bankSelect.setAttribute("required", "required");
+    } else {
+      bankPlatformField.style.display = "none";
+      bankSelect.removeAttribute("required");
+      bankSelect.value = "";  // Limpiar selección
+    }
+  }
+
+  // Evento cuando cambia el método de pago
+  paymentMethodSelect.addEventListener("change", toggleBankPlatformField);
+
+  // Llamar al cargar la página (por si ya hay un valor seleccionado)
+  toggleBankPlatformField();
+
 });

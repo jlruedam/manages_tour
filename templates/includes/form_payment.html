@@ -22,17 +22,17 @@
         </select>
     </div>
 
-    <!-- Método de pago -->
-    <div class="form_sale__field">
-        <label for="payment_bank">Banco/Plataforma</label>
-        <select id="payment_method" name="options_payment" required>
-            <option value="">-- Seleccione --</option>
-            <option value="Nequi">Nequi</option>
-            <option value="Daviplata">Daviplata</option>
-            <option value="Bancolombia">Bancolombia</option>
-            <option value="Bancolombia">BBVA</option>
-            <option value="Bancolombia">Davivienda</option>
-        </select>
+    <!-- Banco/Plataforma -->
+    <div class="form_sale__field" id="bankPlatformField">
+    <label for="payment_bank">Banco/Plataforma</label>
+    <select id="payment_bank" name="options_banks" required>
+        <option value="">-- Seleccione --</option>
+        <option value="Nequi">Nequi</option>
+        <option value="Daviplata">Daviplata</option>
+        <option value="Bancolombia">Bancolombia</option>
+        <option value="BBVA">BBVA</option>
+        <option value="Davivienda">Davivienda</option>
+    </select>
     </div>
 
 
@@ -55,13 +55,13 @@
     </div>
 
     <!-- Confirmado -->
-    <div class="form_sale__field">
+    <!-- <div class="form_sale__field">
         <label for="confirmed">¿Confirmado?</label>
         <select id="confirmed" name="confirmed">
-            <option value="false" selected>No</option>
-            <option value="true">Sí</option>
+            <option value="false">No</option>
+            <option value="true" selected>Sí</option>
         </select>
-    </div>
+    </div> -->
 
     <!-- Nota -->
     <div class="form_sale__field">
