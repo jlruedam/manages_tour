@@ -50,7 +50,7 @@ def create_sale(request):
         payments_json = request.POST.get('payments', '[]')
         payments_data = json.loads(payments_json)
 
-        print(payments_json)
+        print("ABONOS: ",payments_data)
 
 
         tour = Tour.objects.get(name_tour = response.get('tour'))
@@ -80,19 +80,19 @@ def create_sale(request):
             total_sale = quantity*value,
             observations = notes
         )
-        new_sale.save()
+        # new_sale.save()
 
-        for payment in payments_data:
-            Payment.objects.create(
-                sale=new_sale,  # la venta creada
-                options_payment=payment['options_payment'],
-                value=payment['value'],
-                payment_date=payment['payment_date'],
-                payment_reference=payment['payment_reference'],
-                confirmed=payment['confirmed'],
-                note=payment['note'],
-                document_url=payment['document_url']
-            )
+        # for payment in payments_data:
+        #     Payment.objects.create(
+        #         sale=new_sale,  # la venta creada
+        #         options_payment=payment['options_payment'],
+        #         value=payment['value'],
+        #         payment_date=payment['payment_date'],
+        #         payment_reference=payment['payment_reference'],
+        #         confirmed=payment['confirmed'],
+        #         note=payment['note'],
+        #         document_url=payment['document_url']
+        #     )
         
         
         return JsonResponse({
