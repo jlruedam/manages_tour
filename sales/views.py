@@ -10,7 +10,6 @@ from django.db.models import Sum
 import json
 
 
-
 def home(request):
     tours = Tour.objects.all()
     ctx = {
@@ -22,7 +21,6 @@ def home(request):
 # ========== MENU ==========
 def menu(request):
     return render(request, 'home/menu.html')
-
 
 # ========== SALE ==========
 def sale_list(request):
@@ -131,55 +129,26 @@ def sale_detail_view(request, sale_id):
     }
     return render(request, 'sales/sale_detail.html', context)
 
+# def sale_update(request, pk):
+#     sale = get_object_or_404(Sale, pk=pk)
+#     form = SaleForm(request.POST or None, instance=sale)
+#     if form.is_valid():
+#         form.save()
+#         messages.success(request, "Venta actualizada.")
+#         return redirect('sale_list')
+#     return render(request, 'sales/sale_form.html', {'form': form})
 
-def sale_update(request, pk):
-    sale = get_object_or_404(Sale, pk=pk)
-    form = SaleForm(request.POST or None, instance=sale)
-    if form.is_valid():
-        form.save()
-        messages.success(request, "Venta actualizada.")
-        return redirect('sale_list')
-    return render(request, 'sales/sale_form.html', {'form': form})
-
-def sale_delete(request, pk):
-    sale = get_object_or_404(Sale, pk=pk)
-    sale.delete()
-    messages.success(request, "Venta eliminada.")
-    return redirect('sale_list')
-
+# def sale_delete(request, pk):
+#     sale = get_object_or_404(Sale, pk=pk)
+#     sale.delete()
+#     messages.success(request, "Venta eliminada.")
+#     return redirect('sale_list')
 
 
 # ========== AGENCY ==========
 def agency_list(request):
     agencies = Agency.objects.all()
     return render(request, 'agencies/agency_list.html', {'agencies': agencies})
-
-def agency_create(request):
-    if request.method == 'POST':
-        form = AgencyForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Agencia creada correctamente.")
-            return redirect('agency_list')
-    else:
-        form = AgencyForm()
-    return render(request, 'agencies/agency_form.html', {'form': form})
-
-def agency_update(request, pk):
-    agency = get_object_or_404(Agency, pk=pk)
-    form = AgencyForm(request.POST or None, instance=agency)
-    if form.is_valid():
-        form.save()
-        messages.success(request, "Agencia actualizada.")
-        return redirect('agency_list')
-    return render(request, 'agencies/agency_form.html', {'form': form})
-
-def agency_delete(request, pk):
-    agency = get_object_or_404(Agency, pk=pk)
-    agency.delete()
-    messages.success(request, "Agencia eliminada.")
-    return redirect('agency_list')
-
 
 # ========== TOUR ==========
 def tour(request,id):
@@ -189,7 +158,7 @@ def tour(request,id):
 
 def tour_list(request):
     tours = Tour.objects.all()
-    return render(request, 'tours/tour_list.html', {'tours': tours})
+    return render(request, 'tours/tours_list.html', {'tours': tours})
 
 def tour_create(request):
     if request.method == 'POST':
@@ -216,6 +185,34 @@ def tour_delete(request, pk):
     tour.delete()
     messages.success(request, "Tour eliminado.")
     return redirect('tour_list')
+
+
+
+def agency_create(request):
+    if request.method == 'POST':
+        form = AgencyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Agencia creada correctamente.")
+            return redirect('agency_list')
+    else:
+        form = AgencyForm()
+    return render(request, 'agencies/agency_form.html', {'form': form})
+
+def agency_update(request, pk):
+    agency = get_object_or_404(Agency, pk=pk)
+    form = AgencyForm(request.POST or None, instance=agency)
+    if form.is_valid():
+        form.save()
+        messages.success(request, "Agencia actualizada.")
+        return redirect('agency_list')
+    return render(request, 'agencies/agency_form.html', {'form': form})
+
+def agency_delete(request, pk):
+    agency = get_object_or_404(Agency, pk=pk)
+    agency.delete()
+    messages.success(request, "Agencia eliminada.")
+    return redirect('agency_list')
 
 
 # ========== CLIENT ==========

@@ -13,8 +13,8 @@ urlpatterns = [
     path('sales/create/', views.create_sale, name='sale_create'),
     path('sales/<int:sale_id>/', views.sale_detail_view, name='sale_detail'),
     # path('sales/sale_tour/<int:tour_id>', views.sale_tour, name='sale_tour'),
-    path('sales/<int:pk>/edit/', views.sale_update, name='sale_update'),
-    path('sales/<int:pk>/delete/', views.sale_delete, name='sale_delete'),
+    # path('sales/<int:pk>/edit/', views.sale_update, name='sale_update'),
+    # path('sales/<int:pk>/delete/', views.sale_delete, name='sale_delete'),
 
 
     # Agencies
@@ -36,13 +36,7 @@ urlpatterns = [
     path('clients/<int:pk>/edit/', views.client_update, name='client_update'),
     path('clients/<int:pk>/delete/', views.client_delete, name='client_delete'),
 
-    # # Vendors
-    # path('vendors/', views.vendor_list, name='vendor_list'),
-    # path('vendors/create/', views.vendor_create, name='vendor_create'),
-    # path('vendors/<int:pk>/edit/', views.vendor_update, name='vendor_update'),
-    # path('vendors/<int:pk>/delete/', views.vendor_delete, name='vendor_delete'),
-    # Clients
-    
+    # Payments
     path('payments/create/', views.client_create, name='payment_create'),
     
     # Referrers

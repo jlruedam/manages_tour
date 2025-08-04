@@ -1,0 +1,50 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+
+<div class="sections surface">
+    <div class="sections__header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+      <h2 class="titles">Listado de Tours</h2>
+      <button class="btn-agregar" id="">+ Agregar Tour</button>
+    </div>
+    {% if tours %}
+    <div class="table-tours-container">
+        <table class="tabla-tours display responsive nowrap" id="tabla-tours-general">
+            <thead>
+                <tr>
+                    <th>Portada</th>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
+                    <th>Agencia</th>
+                    <th>Proveedor</th>
+                    <th>Precio Venta</th>
+                    <th>Precio Total</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tour in tours %}
+                <tr>
+                    <td><img src="{{ tour.image_path }}" alt="" style="width: 80px; border-radius: 6px;"></td>
+                    <td>{{ tour.name_tour }}</td>
+                    <td>{{ tour.date_tour|date:"d/m/Y H:i" }}</td>
+                    <td>{{ tour.agency.name_agency }}</td>
+                    <td>{{ tour.provider.name_provider }}</td>
+                    <td>${{ tour.price_sale }}</td>
+                    <td>${{ tour.price_total }}</td>
+                    <td class="">
+                        <a href="">👁️</a>
+                        <!-- <a href="">Editar</a>
+                        <a href="" class="delete">Eliminar</a> -->
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+      <p>No hay tours reggistrados aún.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -147,7 +147,6 @@ class Payment(models.Model):
     def __str__(self):
         return f"Payment {self.value}-Sale {self.sale.id}"
 
-
 class Commission(models.Model):
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE, related_name='commissions')
     type = models.CharField(max_length=100)

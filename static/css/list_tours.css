@@ -1,0 +1,66 @@
+.table-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.table-container {
+    overflow-x: auto;
+    /* background: #fff; */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.tour-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: sans-serif;
+}
+
+.tour-table th,
+.tour-table td {
+    border: 1px solid #ccc;
+    padding: 12px 10px;
+    text-align: left;
+}
+
+/* .tour-table th {
+    background-color: #f2f2f2;
+}
+
+.tour-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+} */
+
+.action-buttons a {
+    margin-right: 8px;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: #fff;
+}
+
+.action-buttons a.delete {
+    background-color: #dc3545;
+}
+
+.add-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 16px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.add-button:hover {
+    background-color: #218838;
+}
+
+.button-container {
+    text-align: center;
+}
