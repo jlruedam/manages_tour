@@ -26,7 +26,7 @@
             <tbody>
                 {% for tour in tours %}
                 <tr>
-                    <td><img src="{{ tour.image_path }}" alt="" style="width: 80px; border-radius: 6px;"></td>
+                    <td><img src="{{ tour.image_path }}" alt="" style="width: 80px; height: 80px; border-radius: 6px;"></td>
                     <td>{{ tour.name_tour }}</td>
                     <td>{{ tour.date_tour|date:"d/m/Y H:i" }}</td>
                     <td>{{ tour.agency.name_agency }}</td>
