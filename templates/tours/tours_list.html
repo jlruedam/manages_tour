@@ -1,5 +1,5 @@
 {% extends 'layouts/base.html' %}
-
+{% load humanize %}
 {% block content %}
 
 
@@ -20,24 +20,24 @@
                     <th>Proveedor</th>
                     <th>Precio Venta</th>
                     <th>Precio Total</th>
-                    <th>Acciones</th>
+                    <!-- <th>Acciones</th> -->
                 </tr>
             </thead>
             <tbody>
                 {% for tour in tours %}
                 <tr>
-                    <td><img src="{{ tour.image_path }}" alt="" style="width: 80px; height: 80px; border-radius: 6px;"></td>
+                    <td><a href="{% url 'tour' tour.id %}"  title="Ver Tour"><img src="{{ tour.image_path }}" alt="" style="width: 80px; height: 80px; border-radius: 6px;"></a></td>
                     <td>{{ tour.name_tour }}</td>
                     <td>{{ tour.date_tour|date:"d/m/Y H:i" }}</td>
                     <td>{{ tour.agency.name_agency }}</td>
                     <td>{{ tour.provider.name_provider }}</td>
-                    <td>${{ tour.price_sale }}</td>
-                    <td>${{ tour.price_total }}</td>
-                    <td class="">
+                    <td>${{ tour.price_sale|floatformat:2|intcomma }}</td>
+                    <td>${{ tour.price_total|floatformat:2|intcomma }}</td>
+                    <!-- <td class="">
                         <a href="">👁️</a>
-                        <!-- <a href="">Editar</a>
-                        <a href="" class="delete">Eliminar</a> -->
-                    </td>
+                        <a href="">Editar</a>
+                        <a href="" class="delete">Eliminar</a>
+                    </td> -->
                 </tr>
                 {% endfor %}
             </tbody>
