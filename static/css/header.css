@@ -1,0 +1,36 @@
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: var(--color-turquoise);
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .navbar {
+    width: 100%;
+    display: none; /* Oculta por defecto en móviles */
+    flex-direction: column;
+  }
+
+  .navbar.active {
+    display: flex; /* Muestra cuando está activo */
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-links a {
+    width: 100%;
+    text-align: left;
+    padding-left: 10px;
+  }
+}
