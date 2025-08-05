@@ -1,5 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
+from uuid import uuid4
+import os
+
+
+def tour_main_image_upload_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f"main_{uuid4().hex}.{ext}"
+    return os.path.join('tours', str(instance.agency.id), filename)
+
+def tour_image_upload_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f"{uuid4().hex}.{ext}"
+    return os.path.join('tours', str(instance.tour.agency.id), 'gallery', filename)
 
 
 class Agency(models.Model):
@@ -50,7 +63,7 @@ class Tour(models.Model):
     description = models.TextField(max_length=500)
     price_sale = models.FloatField()
     price_total = models.FloatField()
-    image_path = models.CharField(max_length=200)
+    image_path = models.ImageField(upload_to=tour_main_image_upload_path, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Creado el")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Actualizado el")
 
@@ -59,7 +72,7 @@ class Tour(models.Model):
 
 class TourImage(models.Model):
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='images')
-    image_path = models.CharField(max_length=200)
+    image_path = models.ImageField(upload_to=tour_image_upload_path)
     caption = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):

@@ -157,9 +157,9 @@ def tour(request,id):
     return render(request, 'tours/tour.html', {'tour':tour})
 
 def tour_list(request):
-    tours = Tour.objects.all()
     agencies = Agency.objects.all()
     providers = Provider.objects.all()
+    tours = Tour.objects.select_related('agency', 'provider').prefetch_related('images').all()
     ctx ={
         'tours': tours,
         'agencies':agencies,
@@ -169,7 +169,7 @@ def tour_list(request):
 
 def tour_create(request):
     if request.method == 'POST':
-        print(request.POST)
+        print(request.POST, request.FILES)
         # form = TourForm(request.POST)
         # if form.is_valid():
         #     form.save()
