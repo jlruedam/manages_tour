@@ -1,0 +1,48 @@
+<form id="formCreateTour" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="formCreateTour__field">
+        <label for="agency_tour">Agencia</label>
+        <select name="type_doc" id="type_doc" required>
+            <option value="">-- Seleccione --</option>
+            {% for agency in agencies %}
+            <option value="{{agency.id}}">{{agency}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="formCreateTour__field">
+        <label for="provider_tour">Proveedor</label>
+        <select name="type_doc" id="type_doc" required>
+            <option value="">-- Seleccione --</option>
+            {% for provider in providers %}
+            <option value="{{provider.id}}">{{provider}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="formCreateTour__field">
+        <label for="name_tour">Nombre del tour</label>
+        <input type="text" name="name_tour" id="name_tour" required>
+    </div>
+    <div class="formCreateTour__field">
+        <label for="date_tour">Fecha del tour</label>
+        <input type="datetime-local" name="date_tour" id="date_tour" required>
+    </div>
+    <div class="formCreateTour__field">
+        <label for="price_proveedor">Precio de proveedor</label>
+        <input type="number" name="price_proveedor" id="price_proveedor" step="0.01" required>
+    </div>
+    <div class="formCreateTour__field">
+        <label for="price_sale">Precio de venta</label>
+        <input type="number" name="price_sale" id="price_sale" step="0.01" required>
+    </div>
+    <div class="formCreateTour__field">
+        <label for="tour_description">Descripción</label>
+        <textarea id="tour_description" name="tour_description" rows="3" placeholder="Descripción del Tour"></textarea>
+    </div>
+    <div class="formCreateTour__field">
+        <label for="image_path">Imagen del tour</label>
+        <input type="file" name="image_path" id="image_path" accept="image/*">
+    </div>
+    
+    <button type="submit" class="btn btn-success">Guardar</button>
+    </div>
+</form>

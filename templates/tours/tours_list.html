@@ -6,7 +6,7 @@
 <div class="sections surface">
     <div class="sections__header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
       <h2 class="titles">Listado de Tours</h2>
-      <button class="btn-agregar" id="">+ Agregar Tour</button>
+      <button class="btn-agregar" id="openModalAddTourBtn">+ Agregar Tour</button>
     </div>
     {% if tours %}
     <div class="table-tours-container">
@@ -47,4 +47,16 @@
       <p>No hay tours reggistrados aún.</p>
     {% endif %}
 </div>
+
+
+
+  <!-- Modal -->
+<div id="addTourModal" class="modal">
+  <div class="modal-content surface">
+    <span class="close" id="closeModalAddTourBtn">&times;</span>
+    <h3 class="titles">Agregar Nuevo Tour</h3>
+    {% include 'includes/form_tour.html'%}
+  </div>
+</div>
 {% endblock %}
+

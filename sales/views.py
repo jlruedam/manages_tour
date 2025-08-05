@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Agency, Tour, Client, Employee, Sale, Role, Referrer, Payment
+from .models import Agency, Tour, Client, Employee, Sale, Role, Referrer, Payment, Provider
 from .forms import AgencyForm, TourForm, ClientForm, SaleForm
 from django.contrib import messages
 from django.http import JsonResponse
@@ -158,7 +158,14 @@ def tour(request,id):
 
 def tour_list(request):
     tours = Tour.objects.all()
-    return render(request, 'tours/tours_list.html', {'tours': tours})
+    agencies = Agency.objects.all()
+    providers = Provider.objects.all()
+    ctx ={
+        'tours': tours,
+        'agencies':agencies,
+        'providers':providers
+    }
+    return render(request, 'tours/tours_list.html', ctx)
 
 def tour_create(request):
     if request.method == 'POST':
