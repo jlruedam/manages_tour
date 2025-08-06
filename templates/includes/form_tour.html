@@ -2,7 +2,7 @@
     {% csrf_token %}
     <div class="formCreateTour__field">
         <label for="agency_tour">Agencia</label>
-        <select name="type_doc" id="type_doc" required>
+        <select name="agency" id="agency_tour" required>
             <option value="">-- Seleccione --</option>
             {% for agency in agencies %}
             <option value="{{agency.id}}">{{agency}}</option>
@@ -11,7 +11,7 @@
     </div>
     <div class="formCreateTour__field">
         <label for="provider_tour">Proveedor</label>
-        <select name="type_doc" id="type_doc" required>
+        <select name="provider" id="provider_tour" required>
             <option value="">-- Seleccione --</option>
             {% for provider in providers %}
             <option value="{{provider.id}}">{{provider}}</option>
@@ -28,7 +28,7 @@
     </div>
     <div class="formCreateTour__field">
         <label for="price_proveedor">Precio de proveedor</label>
-        <input type="number" name="price_proveedor" id="price_proveedor" step="0.01" required>
+        <input type="number" name="price_total" id="price_proveedor" step="0.01" required>
     </div>
     <div class="formCreateTour__field">
         <label for="price_sale">Precio de venta</label>
@@ -36,7 +36,7 @@
     </div>
     <div class="formCreateTour__field">
         <label for="tour_description">Descripción</label>
-        <textarea id="tour_description" name="tour_description" rows="3" placeholder="Descripción del Tour"></textarea>
+        <textarea id="tour_description" name="description" rows="3" placeholder="Descripción del Tour"></textarea>
     </div>
     <div class="formCreateTour__field">
         <label for="image_path">Imagen del tour</label>

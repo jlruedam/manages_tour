@@ -5,7 +5,7 @@
         {% for tour in tours %}
             <!-- Card de ejemplo -->
             <div class="tour-card">
-                <img src="{{tour.image_path}}" alt="Tour al Caribe" class="tour-img">
+                <img src="{{tour.image_path.url}}" alt="Tour al Caribe" class="tour-img">
                 <div class="tour-info">
                     <h3 class="tour-title">{{tour.name_tour}}</h3>
                     <p class="tour-date">{{tour.date_tour}}</p>

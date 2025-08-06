@@ -7,12 +7,12 @@ import os
 def tour_main_image_upload_path(instance, filename):
     ext = filename.split('.')[-1]
     filename = f"main_{uuid4().hex}.{ext}"
-    return os.path.join('tours', str(instance.agency.id), filename)
+    return os.path.join('tours', str(instance.id), filename)
 
 def tour_image_upload_path(instance, filename):
     ext = filename.split('.')[-1]
     filename = f"{uuid4().hex}.{ext}"
-    return os.path.join('tours', str(instance.tour.agency.id), 'gallery', filename)
+    return os.path.join('tours', str(instance.agency.id), 'gallery', filename)
 
 
 class Agency(models.Model):
@@ -66,6 +66,18 @@ class Tour(models.Model):
     image_path = models.ImageField(upload_to=tour_main_image_upload_path, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Creado el")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Actualizado el")
+
+    def save(self, *args, **kwargs):
+        try:
+            # Verifica si ya existe una imagen previa
+            old = Tour.objects.get(pk=self.pk)
+            if old.image_path and old.image_path!= self.image_path:
+                if os.path.isfile(old.image_path.path):
+                    os.remove(old.image_path.path)
+        except Tour.DoesNotExist:
+            pass  # No hay imagen previa
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name_tour

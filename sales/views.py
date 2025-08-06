@@ -169,15 +169,17 @@ def tour_list(request):
 
 def tour_create(request):
     if request.method == 'POST':
-        print(request.POST, request.FILES)
-        # form = TourForm(request.POST)
-        # if form.is_valid():
-        #     form.save()
-        #     messages.success(request, "Tour creado correctamente.")
-        #     return redirect('tour_list')
+        form = TourForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Tour creado correctamente.")
+            return redirect('tour_list')
+        else:
+            messages.error(request, "Hubo un error al crear el tour. Verifica los datos.")
     else:
         form = TourForm()
-    return redirect('tour_list')
+
+    return render(request, 'tours/tour_list.html', {'form': form})
 
 def tour_update(request, pk):
     tour = get_object_or_404(Tour, pk=pk)
