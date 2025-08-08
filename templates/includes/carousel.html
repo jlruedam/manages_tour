@@ -1,0 +1,12 @@
+<div class="carousel-container">
+    <div class="carousel-track">
+      {% for image in tour.images.all %}
+        <img src="{{ image.image_path }}" alt="{{ image.caption|default:'Imagen del tour' }}" class="carousel-image">
+        {% if image.caption %}
+            <p class="caption">{{ image.caption }}</p>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <button class="carousel-button prev">&#10094;</button>
+    <button class="carousel-button next">&#10095;</button>
+</div>
