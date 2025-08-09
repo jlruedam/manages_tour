@@ -79,6 +79,13 @@ class Tour(models.Model):
 
         super().save(*args, **kwargs)
 
+    def delete(self, *args, **kwargs):
+        # Eliminar la imagen principal si existe
+        if self.image_path:
+            self.image_path.delete(save=False)  # Elimina también del almacenamiento
+
+        super().delete(*args, **kwargs)
+
     def __str__(self):
         return self.name_tour
 
