@@ -16,12 +16,36 @@
     text-align: justify;
     
 }
+.tour-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .tour-image img {
     width: 100%;
     max-width: 450px;
     border-radius: 10px;
     object-fit: cover;
+}
+
+.tour-image__delete {
+    position: relative;
+    top: -20%;
+    left: 85%;
+    background: gray;
+    border-radius: 10px;
+    padding: 10px;
+    opacity: 0.7;
+    font-size: large;
+}
+
+.tour-image__delete a {
+    text-decoration: none;
+}
+
+.tour-image__delete:hover {
+    background: white;
 }
 
 .tour-info {

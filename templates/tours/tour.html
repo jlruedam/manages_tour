@@ -39,6 +39,7 @@
     {% for image in tour.images.all %}
         {% if image.image_path %}
             <div class="tour-image">
+                <span class="tour-image__delete"><a href="{% url 'tour_image_delete' image.id %}">🗑️</a></span>
                 <img src="{{ image.image_path.url }}" alt="{{ image.caption|default:'Imagen del tour' }}">
             </div>
         {% endif %}

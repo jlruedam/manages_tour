@@ -32,6 +32,7 @@ urlpatterns = [
 
     # TourImage
     path('tourImage/create/<int:pk>', views.tour_image_create, name='tour_image_create'),
+    path('tourImage/<int:pk>/delete', views.tour_image_delete, name='tour_image_delete'),
 
     # Clients
     path('clients/', views.client_list, name='client_list'),

@@ -213,6 +213,14 @@ def tour_image_create(request, pk):
         messages.error(request, "Método no permitido.")
 
     return redirect('tour', id=pk)
+
+def tour_image_delete(request, pk):
+    tour_image = get_object_or_404(TourImage, id=pk)
+    tour_image.delete()
+    messages.success(request, "Imagen del tour eliminada eliminado.")
+    return redirect('tour_list')
+
+
 def agency_create(request):
     if request.method == 'POST':
         form = AgencyForm(request.POST)

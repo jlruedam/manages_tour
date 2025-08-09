@@ -87,6 +87,12 @@ class TourImage(models.Model):
     image_path = models.ImageField(upload_to=tour_image_upload_path)
     caption = models.CharField(max_length=50, blank=True, null=True)
 
+    def delete(self, *args, **kwargs):
+        # Borrar el archivo físico primero
+        if self.image_path and os.path.isfile(self.image_path.path):
+            os.remove(self.image_path.path)
+        super().delete(*args, **kwargs)
+
     def __str__(self):
         return f"Imagen de {self.tour.name_tour}"
 
