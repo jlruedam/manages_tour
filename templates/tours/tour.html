@@ -12,33 +12,46 @@
 
 
 <div class="tour-detail">
+    
     <div class="tour-info surface">
-        <h1 class="tour-title">{{ tour.name_tour }}</h1>
-        <p class="tour-description">{{ tour.description }}</p>
-        <p><strong>Agencia:</strong> {{ tour.agency.name_agency }}</p>
-        <p><strong>Proveedor:</strong> {{ tour.provider.name_provider }}</p>
-        <p><strong>Fecha:</strong> {{ tour.date_tour }}</p>
-        <div class="tour-prices">
-            <p><strong>Precio Venta:</strong> ${{ tour.price_sale }}</p>
-            <p><strong>Precio Total:</strong> ${{ tour.price_total }}</p>
+        <div class="tour-info__img">
+            <img src="{{tour.image_path.url}}" alt="Tour al Caribe" class="">
         </div>
+        <div class="tour-info__info">
+            <h1 class="tour-title">{{ tour.name_tour }}</h1>
+            <p class="tour-description">{{ tour.description }}</p>
+            <p><strong>Agencia:</strong> {{ tour.agency.name_agency }}</p>
+            <p><strong>Proveedor:</strong> {{ tour.provider.name_provider }}</p>
+            <p><strong>Fecha:</strong> {{ tour.date_tour }}</p>
+            <div class="tour-prices">
+                <p><strong>Precio Venta:</strong> ${{ tour.price_sale }}</p>
+                <p><strong>Precio Total:</strong> ${{ tour.price_total }}</p>
+            </div>
 
-        <a href="/" class="btn-back">←</a>
-        <a href="/" class="btn-back">Comprar $ </a>
-        <a href="/" class="btn-back">Agregar fotos  </a>
+            <a href="/" class="btn-back">←</a>
+            <a href="/" class="btn-back">Comprar $ </a>
+            <a class="btn-back" id="addPhotoTourModalBtn">Agregar fotos  </a>
+        </div>
+        
     </div>
     <div class="tour-gallery">
         
-        {% for image in tour.images.all %}
+    {% for image in tour.images.all %}
+        {% if image.image_path %}
             <div class="tour-image">
-                <img src="{{ image.image_path }}" alt="{{ image.caption|default:'Imagen del tour' }}">
-                {% if image.caption %}
-                    <p class="caption">{{ image.caption }}</p>
-                {% endif %}
+                <img src="{{ image.image_path.url }}" alt="{{ image.caption|default:'Imagen del tour' }}">
             </div>
-        {% endfor %}
+        {% endif %}
+    {% endfor %}
     </div>
+</div>
 
-    
+
+<div id="addPhotoTourModal" class="modal">
+  <div class="modal-content surface">
+    <span class="close" id="closeAddPhotoTourModal">&times;</span>
+    <h3 class="titles">Agregar Nuevo Tour</h3>
+    {% include 'includes/form_tour_photos.html'%}
+  </div>
 </div>
 {% endblock %}

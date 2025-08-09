@@ -1,0 +1,22 @@
+<form id="formTourPhotos"  method="POST" action="{% url 'tour_image_create' tour.id %}" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="formTourPhotos__field">
+        <label for="id_tour">Tour</label>
+        <select name="tour" id="id_tour" readonly>
+            <option value="{{tour.id}}" selected>{{tour.name_tour}}</option>
+        </select>
+    </div>
+
+    <div class="formTourPhotos__field">
+        <label for="image_path">Imagen del tour</label>
+        <input type="file" name="image_path" id="image_path" accept="image/*">
+    </div>
+
+    <div class="formTourPhotos__field">
+        <label for="name_image_tour">Nombre imagen</label>
+        <input type="text" name="caption" id="name_image_tour" required>
+    </div>
+    <!-- Botón Guardar -->
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>

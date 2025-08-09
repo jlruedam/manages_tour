@@ -12,8 +12,8 @@ def tour_main_image_upload_path(instance, filename):
 def tour_image_upload_path(instance, filename):
     ext = filename.split('.')[-1]
     filename = f"{uuid4().hex}.{ext}"
-    return os.path.join('tours', str(instance.agency.id), 'gallery', filename)
-
+    tour_id = instance.tour.id if instance.tour else 'unknown'
+    return os.path.join('tours', str(tour_id), 'gallery', filename)
 
 class Agency(models.Model):
     nit = models.CharField(max_length=10)
@@ -85,7 +85,7 @@ class Tour(models.Model):
 class TourImage(models.Model):
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='images')
     image_path = models.ImageField(upload_to=tour_image_upload_path)
-    caption = models.CharField(max_length=100, blank=True, null=True)
+    caption = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
         return f"Imagen de {self.tour.name_tour}"

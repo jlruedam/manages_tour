@@ -1,9 +1,8 @@
 from django import forms
 from .models import (
-    Agency, Provider, Referrer, Tour,
+    Agency, Provider, Referrer, Tour, TourImage,
     Client, Employee, Sale, Payment, Commission
 )
-
 
 
 class AgencyForm(forms.ModelForm):
@@ -35,6 +34,13 @@ class TourForm(forms.ModelForm):
             'price_sale', 'price_total', 'image_path'
         ]
 
+
+class TourImageForm(forms.ModelForm):
+    class Meta:
+        model = TourImage
+        fields = [
+            'image_path', 'caption'
+        ]
 
 class ClientForm(forms.ModelForm):
     class Meta:

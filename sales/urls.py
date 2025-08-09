@@ -30,6 +30,9 @@ urlpatterns = [
     path('tours/<int:pk>/edit/', views.tour_update, name='tour_update'),
     path('tours/<int:pk>/delete/', views.tour_delete, name='tour_delete'),
 
+    # TourImage
+    path('tourImage/create/<int:pk>', views.tour_image_create, name='tour_image_create'),
+
     # Clients
     path('clients/', views.client_list, name='client_list'),
     path('clients/create/', views.client_create, name='client_create'),

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Agency, Tour, Client, Employee, Sale, Role, Referrer, Payment, Provider
-from .forms import AgencyForm, TourForm, ClientForm, SaleForm
+from .models import Agency, Tour, Client, Employee, Sale, Role, Referrer, Payment, Provider, TourImage
+from .forms import AgencyForm, TourForm, ClientForm, SaleForm, TourImageForm
 from django.contrib import messages
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -197,7 +197,22 @@ def tour_delete(request, pk):
     return redirect('tour_list')
 
 
+# ========== TOUR IMAGES ==========
+def tour_image_create(request, pk):
+    tour = get_object_or_404(Tour, id=pk)
 
+    if request.method == 'POST':
+        tour_image = TourImage(
+            tour=tour,
+            image_path=request.FILES.get('image_path'),  # usar nombre real del campo
+            caption=request.POST.get('caption')  # corregido
+        )
+        tour_image.save()
+        messages.success(request, "Imagen agregada correctamente al tour.")
+    else:
+        messages.error(request, "Método no permitido.")
+
+    return redirect('tour', id=pk)
 def agency_create(request):
     if request.method == 'POST':
         form = AgencyForm(request.POST)
