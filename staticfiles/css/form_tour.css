@@ -1,0 +1,58 @@
+/* Contenedor principal del formulario */
+#formCreateTour {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Campos individuales del formulario */
+.formCreateTour__field {
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo para etiquetas */
+.formCreateTour__field label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilo para los inputs */
+.formCreateTour__field input[type="text"],
+.formCreateTour__field input[type="number"],
+.formCreateTour__field input[type="datetime-local"],
+.formCreateTour__field input[type="file"] {
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+.formCreateTour__field input:focus {
+    border-color: #28a745;
+    outline: none;
+}
+
+/* Botón de envío */
+#formCreateTour .btn-success {
+    background-color: #28a745;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#formCreateTour .btn-success:hover {
+    background-color: #218838;
+}

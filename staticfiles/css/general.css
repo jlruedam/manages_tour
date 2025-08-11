@@ -1,0 +1,40 @@
+.surface {
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(100px);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+
+.titles {
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-turquoise);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
+
+.sections {
+    width: 95%;
+    padding: 40px;
+    text-align: center;
+}
+
+.sections__header {
+  margin: 0 0 24px 0;
+}
+
+.btn-agregar {
+  background-color: var(--color-turquoise);
+  color: var(--color-white);
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  font-size: 0.95rem;
+  margin-top: 10px;
+}
+
+.btn-agregar:hover {
+  background-color: var(--color-forest-green);
+}

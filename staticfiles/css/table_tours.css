@@ -1,0 +1,64 @@
+.tabla-tours-container {
+  overflow-x: auto;
+}
+
+.tabla-tours {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  background-color: var(--color-white);
+  color: var(--color-dark-gray);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabla-tours thead {
+  background-color: var(--color-turquoise);
+  color: var(--color-white);
+}
+
+.tabla-tours th, .tabla-tours td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* .tabla-tours td {
+  
+  max-width: 150px;        
+  
+} */
+
+.tabla-tours tbody tr:hover {
+  background-color: var(--color-light-gray);
+}
+
+/* Botones de acción */
+.btn-accion {
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin: 0 2px;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.btn-accion.editar {
+  background-color: var(--color-yellow);
+  color: var(--color-dark-gray);
+}
+
+.btn-accion.eliminar {
+  background-color: #e53935;
+  color: var(--color-white);
+}
+
+.btn-accion:hover {
+  opacity: 0.8;
+}

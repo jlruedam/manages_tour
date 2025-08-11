@@ -1,0 +1,141 @@
+/* .tour-detail {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2rem auto;
+    max-width: 1000px;
+    gap: 2rem;
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+} */
+
+.tour-detail {
+    display: block;
+    width: 90%;
+    text-align: justify;
+    
+}
+.tour-image {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+
+.tour-image img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.tour-image__delete {
+    position: relative;
+    top: 5%;
+    left: 120%;
+    background: gray;
+    border-radius: 10px;
+    padding: 10px;
+    opacity: 0.6;
+    font-size: large;
+    visibility: hidden;
+}
+
+.tour-image:hover .tour-image__delete  {
+    visibility: visible;
+}
+
+.tour-image a {
+    text-decoration: none;
+}
+
+.tour-image__delete:hover {
+    background: white;
+}
+
+.tour-info {
+    /* flex:content;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; */
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    text-align: right;
+    
+    /* background-color: var(--color-light-gray); */
+    /* display: block; */
+    /* width: 50%;
+    height: 50%; */
+    /* color: var(--color-dark-gray); */
+    border-radius: 10px;
+    margin: 0;
+}
+
+.tour-info .tour-info__img{
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+}
+
+.tour-info .tour-info__img img{
+    width: 300px;
+    height: 300px;
+    border-radius: 10%;
+    object-fit: cover;
+}
+
+
+.tour-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.tour-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.tour-date {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.tour-prices {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+}
+
+.tour-prices p {
+    margin: 0.3rem 0;
+}
+
+.btn-back {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.6rem 1.2rem;
+    background-color: var(--color-turquoise);
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+    background-color: var(--color-forest-green);
+    text-decoration: none;
+}
+
+
+.tour-gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}

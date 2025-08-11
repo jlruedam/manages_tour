@@ -1,0 +1,155 @@
+:root {
+  --color-turquoise: #00BFA6;
+  --color-yellow: #FFC107;
+  --color-light-gray: #F4F4F4;
+  --color-dark-gray: #333333;
+  --color-white: #FFFFFF;
+  --color-forest-green: #388E3C;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  zoom:1;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Tipografía global */
+body {
+    font-family: sans-serif;
+    background-image: url("../img/playa.jpeg");
+    background-size:cover;
+    background-position: center;
+    color: var(--color-white);
+    letter-spacing: 1.5px;
+    /* font-weight: 400; */
+    font-size: 2dvh;
+    text-align: center;
+    /* text-shadow: 0 0 1px rgba(0, 0, 0, 0.7); */
+}
+
+/* ===================== */
+/* HEADER - Sticky Navbar */
+/* ===================== */
+
+
+.container-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.header {
+  width: 90%;
+  margin: 0 auto;
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Logo */
+.logo h1 {
+  font-family: 'Poppins', sans-serif;
+  color: var(--color-turquoise);
+  font-size: 24px;
+  margin: 0;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.nav-links li {
+  display: inline-block;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--color-white);
+    text-align: center;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: var(--color-turquoise);
+  color: var(--color-white);
+  
+}
+
+/* ===================== */
+/* MAIN */
+/* ===================== */
+
+.container-main {
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  /* align-items:center; */
+  padding: 40px 0;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+/* .main {
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+} */
+
+/* ===================== */
+/* ENLACES GENERALES */
+/* ===================== */
+
+a {
+  color: var(--color-turquoise);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===================== */
+/* RESPONSIVE DESIGN */
+/* ===================== */
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

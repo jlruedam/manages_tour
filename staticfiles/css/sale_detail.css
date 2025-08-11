@@ -1,0 +1,75 @@
+.sale_detail {
+  
+}
+
+
+/* Títulos principales */
+.sale_detail h2 {
+  font-size: 28px;
+  margin-bottom: 1rem;
+}
+
+/* Títulos de sección */
+.sale_detail h3 {
+  font-size: 22px;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 0.5rem;
+}
+
+/* Secciones generales */
+.sale_detail section {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+/* Párrafos de contenido */
+.sale_detail section p {
+  margin: 0.3rem 0;
+  font-size: 16px;
+}
+
+/* Contenedor de imágenes */
+.sale_detail .tour-images {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+/* Cada imagen individual */
+.sale_detail .tour-image {
+  max-width: 200px;
+}
+
+.sale_detail .tour-image img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.sale_detail .tour-image small {
+  display: block;
+  margin-top: 0.3rem;
+  color: #666;
+}
+
+/* Tarjeta de abono */
+.sale_detail .payment-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #fff;
+}
+
+/* Estilo de enlaces */
+.sale_detail .payment-card a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.sale_detail .payment-card a:hover {
+  text-decoration: underline;
+}
