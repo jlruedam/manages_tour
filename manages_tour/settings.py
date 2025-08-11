@@ -80,12 +80,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-if DEBUG:
-    # En desarrollo: tomar los estáticos desde "static/"
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-else:
-    # En producción: cache busting y control estricto
-    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+# if DEBUG:
+#     # En desarrollo: tomar los estáticos desde "static/"
+#     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# else:
+#     # En producción: cache busting y control estricto
+#     STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 # === MEDIA FILES ===
 MEDIA_URL = '/media/'
