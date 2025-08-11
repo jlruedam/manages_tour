@@ -4,18 +4,25 @@ const modal = document.getElementById("myModal");
 const btn = document.getElementById("openModalBtn");
 const closeModal = document.getElementById("closeModal");;
 const saleForm = document.getElementById("saleForm");
+const saleFormSubmitBtn = document.getElementById("saleFormSubmitBtn");
 
 // Abrir modal
-btn.onclick = function() {
-modal.style.display = "block";
+if(btn){
+    btn.onclick = function() {
+    modal.style.display = "block";
+}
+
 }
 
 // Cerrar al hacer clic en la X
-closeModal.onclick = function() {
-modal.style.display = "none";
+if(closeModal){
+    closeModal.onclick = function() {
+    modal.style.display = "none";   
+    }
 }
 
-saleForm.addEventListener('submit', async (e) => {
+
+saleFormSubmitBtn.addEventListener('click', async (e) => {
 
     e.preventDefault();
 

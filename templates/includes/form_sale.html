@@ -5,7 +5,12 @@
     <div class="form_sale__field">
         <label for="input_tour">Tour</label>
         <div class="input-group">
-            <input list="tourOptions" id="input_tour" name="tour" placeholder="Seleccione un tour" readonly />
+            
+            <input list="tourOptions" id="input_tour" name="tour" placeholder="Seleccione un tour" 
+            {% if tour_selected %}
+              value="{{tour_selected.name_tour}}" 
+            {% endif %}
+            readonly />
             <datalist id="tourOptions">
             </datalist>
             <input type="button" value=">" title="Agregar nuevo tour" id="openModalTourBtn"/>
@@ -57,13 +62,13 @@
     <!-- Valor sugerido -->
     <div class="form_sale__field">
         <label for="price_sugested">Precio base</label>
-        <input type="number" id="price_sugested" name="price_sugested"  disabled />
+        <input type="number" id="price_sugested" name="price_sugested" value={{tour_selected.price_sale}} disabled />
     </div>
 
     <!-- Valor venta -->
     <div class="form_sale__field">
         <label for="input_value">Valor venta tour $</label>
-        <input type="number" id="input_value" name="value" />
+        <input type="number" id="input_value" name="value" value={{tour_selected.price_sale}}  />
     </div>
 
     <!-- Cantidad -->
@@ -98,7 +103,7 @@
     {% endif %}
 
     <!-- Botón Guardar -->
-    <button type="submit" class="btn btn-success">Guardar</button>
+    <button type="button" class="btn btn-success" id="saleFormSubmitBtn">Guardar</button>
 </form>
 
 <div id="modalTour" class="modal">

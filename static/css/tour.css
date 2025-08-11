@@ -22,6 +22,7 @@
     align-items: center;
 }
 
+
 .tour-image img {
     width: 100%;
     max-width: 450px;
@@ -38,6 +39,12 @@
     padding: 10px;
     opacity: 0.7;
     font-size: large;
+    visibility: hidden;
+}
+
+.tour-image:hover .tour-image__delete  {
+    
+    visibility: visible;
 }
 
 .tour-image__delete a {
@@ -131,5 +138,5 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    flex-shrink: 1;
+    align-items: stretch;
 }

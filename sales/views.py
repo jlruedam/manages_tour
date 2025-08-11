@@ -110,6 +110,24 @@ def create_sale(request):
         })
     return JsonResponse({'success': False, 'message': 'Método no permitido'})
 
+def create_sale_tour(request, tour_id):
+
+    tour_selected = Tour.objects.get(id = tour_id)
+    tours = Tour.objects.all()
+    clients = Client.objects.all()
+    referrers = Referrer.objects.all()
+
+    vendors = Employee.objects.filter(rol = 1)
+    ctx = {
+        'view_sale_list':True,
+        'tour_selected':tour_selected,
+        'tours':tours,
+        'clients':clients,
+        'vendors': vendors,
+        'referrers':referrers
+    }
+    return render(request, 'sales/sale_tour.html', ctx)
+
 def sale_detail_view(request, sale_id):
     sale = get_object_or_404(Sale, id=sale_id)
     tour = sale.tour

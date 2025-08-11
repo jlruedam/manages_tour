@@ -29,12 +29,13 @@
             </div>
 
             <a href="/" class="btn-back">←</a>
-            <a href="/" class="btn-back">Comprar $ </a>
-            <a class="btn-back" id="addPhotoTourModalBtn">Agregar fotos  </a>
+            <a href="{% url 'create_sale_tour' tour.id %}" class="btn-back">Comprar 🛒 </a>
+            <a href="/" class="btn-back">Editar 📝 </a>
+            <a class="btn-back" id="addPhotoTourModalBtn">Agregar fotos 📷 </a>
         </div>
         
     </div>
-    <div class="tour-gallery">
+    <div class="tour-gallery surface">
         
     {% for image in tour.images.all %}
         {% if image.image_path %}
