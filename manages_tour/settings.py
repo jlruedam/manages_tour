@@ -7,12 +7,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3t2t%f1mci9i!c7vfb%gen8pip&y-3_gqf@f9=mdarrc60=*q&'
 
 # --- Detectar si estamos en producción (PythonAnywhere) ---
-if socket.gethostname().endswith("pythonanywhere.com"):
-    DEBUG = False
-    ALLOWED_HOSTS = ['jrueda.pythonanywhere.com']
-else:
-    DEBUG = True
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+# if socket.gethostname().endswith("pythonanywhere.com"):
+#     DEBUG = False
+#     ALLOWED_HOSTS = ['jrueda.pythonanywhere.com']
+# else:
+#     DEBUG = True
+#     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+DEBUG = False
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'jrueda.pythonanywhere.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
