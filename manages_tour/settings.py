@@ -1,21 +1,18 @@
 from pathlib import Path
 import os
-# import socket
+import socket
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-3t2t%f1mci9i!c7vfb%gen8pip&y-3_gqf@f9=mdarrc60=*q&'
 
-# Detectar si estamos en PythonAnywhere o en local
-# if socket.gethostname().endswith("pythonanywhere.com"):
-#     DEBUG = False
-#     ALLOWED_HOSTS = ['jrueda.pythonanywhere.com']
-# else:
-#     DEBUG = True
-#     ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'jrueda.pythonanywhere.com']
-
-DEBUG = False
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'jrueda.pythonanywhere.com']
+# --- Detectar si estamos en producción (PythonAnywhere) ---
+if socket.gethostname().endswith("pythonanywhere.com"):
+    DEBUG = False
+    ALLOWED_HOSTS = ['jrueda.pythonanywhere.com']
+else:
+    DEBUG = True
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -81,9 +78,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Solo usar STATICFILES_DIRS en desarrollo
-# if DEBUG:
-#     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+if DEBUG:
+    # En desarrollo: tomar los estáticos desde "static/"
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+else:
+    # En producción: cache busting y control estricto
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 # === MEDIA FILES ===
 MEDIA_URL = '/media/'
