@@ -28,7 +28,7 @@
                 <p><strong>Precio Total:</strong> ${{ tour.price_total }}</p>
             </div>
 
-            <a href="/" class="btn-back">←</a>
+            <a href="javascript:history.back()"  class="btn-back">←</a>
             <a href="{% url 'create_sale_tour' tour.id %}" class="btn-back">Comprar 🛒 </a>
             <a href="/" class="btn-back">Editar 📝 </a>
             <a class="btn-back" id="addPhotoTourModalBtn">Agregar fotos 📷 </a>
