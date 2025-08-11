@@ -147,22 +147,6 @@ def sale_detail_view(request, sale_id):
     }
     return render(request, 'sales/sale_detail.html', context)
 
-# def sale_update(request, pk):
-#     sale = get_object_or_404(Sale, pk=pk)
-#     form = SaleForm(request.POST or None, instance=sale)
-#     if form.is_valid():
-#         form.save()
-#         messages.success(request, "Venta actualizada.")
-#         return redirect('sale_list')
-#     return render(request, 'sales/sale_form.html', {'form': form})
-
-# def sale_delete(request, pk):
-#     sale = get_object_or_404(Sale, pk=pk)
-#     sale.delete()
-#     messages.success(request, "Venta eliminada.")
-#     return redirect('sale_list')
-
-
 # ========== AGENCY ==========
 def agency_list(request):
     agencies = Agency.objects.all()
@@ -236,7 +220,7 @@ def tour_image_delete(request, pk):
     tour_image = get_object_or_404(TourImage, id=pk)
     tour_image.delete()
     messages.success(request, "Imagen del tour eliminada eliminado.")
-    return redirect('tour_list')
+    return redirect('tour', tour_image.tour.id)
 
 
 def agency_create(request):

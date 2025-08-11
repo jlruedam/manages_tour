@@ -19,7 +19,7 @@
 .tour-image {
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
 }
 
 
@@ -32,22 +32,21 @@
 
 .tour-image__delete {
     position: relative;
-    top: -20%;
-    left: 85%;
+    top: 5%;
+    left: 120%;
     background: gray;
     border-radius: 10px;
     padding: 10px;
-    opacity: 0.7;
+    opacity: 0.6;
     font-size: large;
     visibility: hidden;
 }
 
 .tour-image:hover .tour-image__delete  {
-    
     visibility: visible;
 }
 
-.tour-image__delete a {
+.tour-image a {
     text-decoration: none;
 }
 
@@ -85,6 +84,7 @@
     width: 300px;
     height: 300px;
     border-radius: 10%;
+    object-fit: cover;
 }
 
 
@@ -138,5 +138,4 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    align-items: stretch;
 }
