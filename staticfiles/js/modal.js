@@ -43,7 +43,7 @@ saleFormSubmitBtn.addEventListener('click', async (e) => {
 
         const data = await response.json();
 
-        console.log(data);
+        console.log("DATA:",data);
 
         alert(data);
         // if (data.success) {

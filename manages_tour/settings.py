@@ -1,19 +1,12 @@
 from pathlib import Path
 import os
-import socket
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-3t2t%f1mci9i!c7vfb%gen8pip&y-3_gqf@f9=mdarrc60=*q&'
 
-# --- Detectar si estamos en producción (PythonAnywhere) ---
-# if socket.gethostname().endswith("pythonanywhere.com"):
-#     DEBUG = False
-#     ALLOWED_HOSTS = ['jrueda.pythonanywhere.com']
-# else:
-#     DEBUG = True
-#     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-DEBUG = False
+
+DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'jrueda.pythonanywhere.com']
 
 INSTALLED_APPS = [
@@ -43,10 +36,11 @@ ROOT_URLCONF = 'manages_tour.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -76,21 +70,25 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 # === STATIC FILES ===
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# if DEBUG:
-#     # En desarrollo: tomar los estáticos desde "static/"
-#     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-# else:
-#     # En producción: cache busting y control estricto
-#     STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
+
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'sales/static'),
+# ]
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 # === MEDIA FILES ===
-MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
