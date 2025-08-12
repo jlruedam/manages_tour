@@ -33,8 +33,8 @@ class TourAdmin(admin.ModelAdmin):
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ('name', 'num_doc', 'email', 'hotel')
-    search_fields = ('name', 'num_doc')
+    list_display = ('name', 'num_doc', 'email', 'hotel', 'country', 'city')
+    search_fields = ('name', 'num_doc', 'country', 'city')
 
 
 @admin.register(Employee)

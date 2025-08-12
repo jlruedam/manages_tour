@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cities_light.models import Country, City
 from uuid import uuid4
 import os
 
@@ -116,6 +117,8 @@ class Client(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=200)
     tel = models.CharField(max_length=200, blank=True, null=True)
+    country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True, blank=True)
+    city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True)
     hotel = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Creado el")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Actualizado el")
