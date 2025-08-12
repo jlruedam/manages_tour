@@ -1,0 +1,71 @@
+/* Títulos principales */
+h2 {
+  font-size: 28px;
+  margin-bottom: 1rem;
+}
+
+/* Títulos de sección */
+h3 {
+  font-size: 22px;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 0.5rem;
+}
+
+/* Secciones generales */
+section {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+/* Párrafos de contenido */
+section p {
+  margin: 0.3rem 0;
+  font-size: 16px;
+}
+
+/* Contenedor de imágenes */
+.tour-images {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+/* Cada imagen individual */
+.tour-image {
+  max-width: 200px;
+}
+
+.tour-image img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.tour-image small {
+  display: block;
+  margin-top: 0.3rem;
+  color: #666;
+}
+
+/* Tarjeta de abono */
+.payment-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #fff;
+}
+
+/* Estilo de enlaces */
+.payment-card a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.payment-card a:hover {
+  text-decoration: underline;
+}
