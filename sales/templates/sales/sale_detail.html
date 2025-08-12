@@ -10,7 +10,7 @@
     <section class="card surface">
         <h3>Información del Cliente</h3>
         <p><strong>Nombre:</strong> {{ sale.client.name }}</p>
-        <p><strong>Documento:</strong> {{ sale.client.type_doc }} {{ sale.client.num_doc }}</p>
+        <p><strong>Documento:</strong> {{ sale.client.type_doc }}-{{ sale.client.num_doc }}</p>
         <p><strong>Email:</strong> {{ sale.client.email }}</p>
         <p><strong>Teléfono:</strong> {{ sale.client.tel }}</p>
     </section>
@@ -29,8 +29,7 @@
         <div class="tour-images">
         {% for image in images %}
             <div class="tour-image">
-            <img src="{{ image.image_path }}" alt="{{ image.caption }}">
-            {% if image.caption %}<small>{{ image.caption }}</small>{% endif %}
+                <img src="{{ image.image_path.url }}" alt="{{ image.caption }}">
             </div>
         {% endfor %}
         </div>

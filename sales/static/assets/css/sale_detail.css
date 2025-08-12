@@ -23,6 +23,9 @@
   margin-bottom: 2rem;
   padding: 1rem;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Párrafos de contenido */

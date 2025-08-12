@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3t2t%f1mci9i!c7vfb%gen8pip&y-3_gqf@f9=mdarrc60=*q&'
 
 
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'jrueda.pythonanywhere.com']
 
 INSTALLED_APPS = [

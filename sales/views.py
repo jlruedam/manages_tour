@@ -129,24 +129,25 @@ def create_sale_tour(request, tour_id):
     return render(request, 'sales/sale_tour.html', ctx)
 
 def sale_detail_view(request, sale_id):
-    sale = get_object_or_404(Sale, id=sale_id)
-    tour = sale.tour
-    images = tour.images.all()
-    payments = sale.payments.all()
+    sale = (
+        Sale.objects
+        .select_related('tour')  # carga tour en la misma consulta
+        .prefetch_related('tour__images', 'payments')  # carga imágenes y pagos
+        .get(id=sale_id)
+    )
 
-    total_abonado = sum(p.value for p in payments)
+    total_abonado = sale.payments.aggregate(total=Sum('value'))['total'] or 0
     saldo_pendiente = sale.total_sale - total_abonado
 
     context = {
         'sale': sale,
-        'tour': tour,
-        'images': images,
-        'payments': payments,
+        'tour': sale.tour,
+        'images': sale.tour.images.all(),
+        'payments': sale.payments.all(),
         'total_abonado': total_abonado,
         'saldo_pendiente': saldo_pendiente,
     }
     return render(request, 'sales/sale_detail.html', context)
-
 # ========== AGENCY ==========
 def agency_list(request):
     agencies = Agency.objects.all()
