@@ -38,13 +38,13 @@
     <div class="tour-gallery surface">
         
     {% for image in tour.images.all %}
-        {% if image.image_path %}
-            <div class="tour-image">
-                <span><a class="tour-image__delete" href="{% url 'tour_image_delete' image.id %}">🗑️</a></span>
-                <img src="{{ image.image_path.url }}" alt="{{ image.caption|default:'Imagen del tour' }}">
-            </div>
-        {% endif %}
-    {% endfor %}
+    {% if image.image_path %}
+        <div class="tour-image" tabindex="0">
+            <a class="tour-image__delete" href="{% url 'tour_image_delete' image.id %}">🗑️</a>
+            <img src="{{ image.image_path.url }}" alt="{{ image.caption|default:'Imagen del tour' }}">
+        </div>
+    {% endif %}
+{% endfor %}
     </div>
 </div>
 

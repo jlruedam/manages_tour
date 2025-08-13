@@ -16,30 +16,67 @@
     text-align: justify;
     
 }
-.tour-image {
+/* .tour-image {
     display: flex;
     justify-content: center;
-    /* align-items: center; */
+    align-items: center;
+} */
+
+.tour-image {
+    position: relative;
+    display: inline-block;
+    outline: none;
 }
 
 
-.tour-image img {
+/* .tour-image img {
     width: 100%;
     max-width: 450px;
     border-radius: 10px;
     object-fit: cover;
+} */
+
+
+.tour-image img {
+    display: block;
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 20% 10px 20% 10px;
 }
 
-.tour-image__delete {
+
+/* .tour-image__delete {
     position: relative;
-    top: 5%;
-    left: 120%;
+    top: 0%;
+    left: 10%;
     background: gray;
     border-radius: 10px;
     padding: 10px;
     opacity: 0.6;
     font-size: large;
     visibility: hidden;
+} */
+
+.tour-image__delete {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 6px;
+    border-radius: 50%;
+    font-size: 16px;
+    text-decoration: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+/* Solo aparece cuando el contenedor o un hijo está en focus */
+.tour-image:hover .tour-image__delete {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .tour-image:hover .tour-image__delete  {
@@ -49,6 +86,8 @@
 .tour-image a {
     text-decoration: none;
 }
+
+
 
 .tour-image__delete:hover {
     background: white;
@@ -60,11 +99,11 @@
     justify-content: center;
     flex-direction: column;
     align-items: center; */
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
     text-align: center;
-    text-align: right;
-    
+    /* text-align: right;
+     */
     /* background-color: var(--color-light-gray); */
     /* display: block; */
     /* width: 50%;
@@ -83,7 +122,7 @@
 .tour-info .tour-info__img img{
     width: 300px;
     height: 300px;
-    border-radius: 10%;
+    border-radius: 50%;
     object-fit: cover;
 }
 
