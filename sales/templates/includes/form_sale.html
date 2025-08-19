@@ -5,7 +5,6 @@
     <div class="form_sale__field">
         <label for="input_tour">Tour</label>
         <div class="input-group">
-            
             <input list="tourOptions" id="input_tour" name="tour" placeholder="Seleccione un tour" 
             {% if tour_selected %}
               value="{{tour_selected.name_tour}}" 
@@ -61,8 +60,8 @@
 
     <!-- Valor sugerido -->
     <div class="form_sale__field">
-        <label for="price_sugested">Precio base</label>
-        <input type="number" id="price_sugested" name="price_sugested" value={{tour_selected.price_sale}} disabled />
+        <label for="price_sugested">Precio base $</label>
+        <input type="number" id="price_sugested" name="price_sugested" value='{{tour_selected.price_sale}}' disabled/>
     </div>
 
     <!-- Valor venta -->

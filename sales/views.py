@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Agency, Tour, Client, Employee, Sale, Role, Referrer, Payment, Provider, TourImage
+from .models import (Agency, Tour, Client, Employee, 
+                     Sale, Role, Referrer, Payment, 
+                     Provider, TourImage, Country
+                     )
 from .forms import AgencyForm, TourForm, ClientForm, SaleForm, TourImageForm
 from django.contrib import messages
 from django.http import JsonResponse
@@ -31,6 +34,9 @@ def sale_list(request):
     tours = Tour.objects.all()
     clients = Client.objects.all()
     referrers = Referrer.objects.all()
+    countries = Country.objects.all()
+
+    print("ENTRA A AQUÍ: ", countries.count())
 
     vendors = Employee.objects.filter(rol = 1)
     ctx = {
@@ -39,7 +45,8 @@ def sale_list(request):
         'tours':tours,
         'clients':clients,
         'vendors': vendors,
-        'referrers':referrers
+        'referrers':referrers,
+        'countries':countries
     }
     return render(request, 'sales/sale_list.html', ctx)
 
@@ -52,7 +59,6 @@ def create_sale(request):
         payments_data = json.loads(payments_json)
 
         print("ABONOS: ",payments_data)
-
 
         tour = Tour.objects.get(name_tour = response.get('tour'))
 

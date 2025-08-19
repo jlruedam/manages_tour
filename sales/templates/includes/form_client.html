@@ -35,6 +35,21 @@
     </div>
 
     <div class="form_client__field">
+        <label for="country">País de origen</label>
+        <input list="" id="input_country" name="country" placeholder="Seleccione o escriba un cliente" />
+        <datalist id="countryOptions">
+            {% for country in countries %}
+            <option value="{{country.id}}">{{country}}</option>
+            {% endfor %}
+        </datalist>
+    </div>
+
+    <div class="form_client__field">
+        <label for="city">Ciudad de origen</label>
+        <input type="text" name="city" id="city">
+    </div>
+
+    <div class="form_client__field">
         <label for="hotel">Hotel</label>
         <input type="text" name="hotel" id="hotel" required>
     </div>
