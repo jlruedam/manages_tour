@@ -45,7 +45,7 @@ class TourImageForm(forms.ModelForm):
 class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
-        fields = ['type_doc', 'num_doc', 'name', 'email', 'tel', 'hotel']
+        fields = ['type_doc', 'num_doc', 'name', 'email', 'tel','country','city','hotel']
 
 
 class EmployeeForm(forms.ModelForm):

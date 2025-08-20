@@ -13,6 +13,7 @@ from django.db.models import Sum
 import json
 
 
+
 def home(request):
     tours = Tour.objects.all()
     ctx = {
@@ -262,9 +263,23 @@ def client_list(request):
     clients = Client.objects.all()
     return render(request, 'clients/client_list.html', {'clients': clients})
 
+
+
 def client_create(request):
     if request.method == 'POST':
-        form = ClientForm(request.POST)
+        post_data = request.POST.copy()
+
+        # Extraer IDs de los valores compuestos
+        country_val = post_data.get('country')  # "49-Colombia"
+        city_val = post_data.get('city')        # "6300-Quibdó"
+
+        if country_val:
+            post_data['country'] = country_val.split('-', 1)[0]  # "49"
+        if city_val:
+            post_data['city'] = city_val.split('-', 1)[0]        # "6300"
+
+        form = ClientForm(post_data)
+
         if form.is_valid():
             client = form.save()
             return JsonResponse({
@@ -272,12 +287,21 @@ def client_create(request):
                 'message': 'Cliente creado correctamente.',
                 'client': {
                     'num_doc': client.num_doc,
-                    'name': client.name
+                    'name': client.name,
+                    'country': client.country_id,  # o client.country.name
+                    'city': client.city_id,        # o client.city.name
                 }
             })
         else:
-            return JsonResponse({'success': False, 'message': 'Datos inválidos', 'errors': form.errors})
+            print(form.errors)
+            return JsonResponse({
+                'success': False,
+                'message': 'Datos inválidos',
+                'errors': form.errors
+            })
+
     return JsonResponse({'success': False, 'message': 'Método no permitido'})
+
 
 def client_update(request, pk):
     client = get_object_or_404(Client, pk=pk)
