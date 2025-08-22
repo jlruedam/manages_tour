@@ -14,6 +14,7 @@ import json
 
 
 
+
 def home(request):
     tours = Tour.objects.all()
     ctx = {
@@ -73,6 +74,7 @@ def create_sale(request):
         referrer = Referrer.objects.get(num_doc = referrer[0])
 
         value = float(response.get('value'))
+        
         quantity = int(response.get('quantity'))
         notes = response.get('notes')
 
@@ -88,7 +90,9 @@ def create_sale(request):
             total_sale = quantity*value,
             observations = notes
         )
+        
         new_sale.save()
+
 
         for payment in payments_data:
             Payment.objects.create(
@@ -261,9 +265,7 @@ def agency_delete(request, pk):
 # ========== CLIENT ==========
 def client_list(request):
     clients = Client.objects.all()
-    return render(request, 'clients/client_list.html', {'clients': clients})
-
-
+    return render(request, 'clients/clients_list.html', {'clients': clients})
 
 def client_create(request):
     if request.method == 'POST':
@@ -301,7 +303,6 @@ def client_create(request):
             })
 
     return JsonResponse({'success': False, 'message': 'Método no permitido'})
-
 
 def client_update(request, pk):
     client = get_object_or_404(Client, pk=pk)

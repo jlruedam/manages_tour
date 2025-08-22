@@ -6,14 +6,20 @@ const closeAddPhotoTourModal = document.getElementById("closeAddPhotoTourModal")
 
 
 // Abrir modal
-addPhotoTourModalBtn.onclick = function() {
-addPhotoTourModal.style.display = "block";
+if(addPhotoTourModalBtn){
+    addPhotoTourModalBtn.onclick = function() {
+        addPhotoTourModal.style.display = "block";
+    }
 }
 
+
 // Cerrar al hacer clic en la X
-closeAddPhotoTourModal.onclick = function() {
-addPhotoTourModal.style.display = "none";
+if(closeAddPhotoTourModal){
+    closeAddPhotoTourModal.onclick = function() {
+        addPhotoTourModal.style.display = "none";
+    }
 }
+
 
 // addPhotoTourModal.addEventListener('submit', function (e) {
 //     e.preventDefault();

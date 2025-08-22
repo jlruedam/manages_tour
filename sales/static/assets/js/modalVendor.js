@@ -6,14 +6,20 @@ const closeModalVendor = document.getElementById("closeModalVendor");
 
 
 // Abrir modal
-modalVendorBtn.onclick = function() {
-modalVendor.style.display = "block";
+if(modalVendorBtn){
+    modalVendorBtn.onclick = function() {
+        modalVendor.style.display = "block";
+    }
 }
 
+
 // Cerrar al hacer clic en la X
-closeModalVendor.onclick = function() {
-modalVendor.style.display = "none";
+if(closeModalVendor){
+    closeModalVendor.onclick = function() {
+        modalVendor.style.display = "none";
+    }
 }
+
 
 // saleForm.addEventListener('submit'
 // )

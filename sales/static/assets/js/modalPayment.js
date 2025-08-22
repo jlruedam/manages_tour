@@ -13,15 +13,20 @@ document.addEventListener('DOMContentLoaded', function () {
   let paymentIdCounter = 1;
 
   // Abrir modal
-  modalPaymentBtn.addEventListener("click", () => {
-    modalPayment.style.display = "block";
-  });
+  if(modalPaymentBtn){
+    modalPaymentBtn.addEventListener("click", () => {
+      modalPayment.style.display = "block";
+    });
+  }
+  
 
   // Cerrar modal
-  closeModalPayment.addEventListener("click", () => {
-    modalPayment.style.display = "none";
-  });
-
+  if(closeModalPayment){
+    closeModalPayment.addEventListener("click", () => {
+      modalPayment.style.display = "none";
+    });
+  }
+  
   // Crear tarjeta HTML
   function crearTarjetaAbono(payment) {
     const card = document.createElement("div");
@@ -43,65 +48,77 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Agregar abono
-  formCreatePayment.addEventListener("submit", function (e) {
-    e.preventDefault();
+  if(formCreatePayment){
+    formCreatePayment.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    const formData = new FormData(formCreatePayment);
+      const formData = new FormData(formCreatePayment);
 
-    const payment = {
-      id: paymentIdCounter++,
-      payment_date: formData.get("payment_date") || "-",
-      options_bank: formData.get("options_bank") || "-",
-      options_payment: formData.get("options_payment") || "-",
-      value: parseFloat(formData.get("value")) || 0,
-      payment_reference: formData.get("payment_reference") || "-",
-      // confirmed: formData.get("confirmed") === "true" ? "Sí" : "No",
-      note: formData.get("note") || "-",
-      // document_url: formData.get("document_url") || ""
-    };
+      const payment = {
+        id: paymentIdCounter++,
+        payment_date: formData.get("payment_date") || "-",
+        options_bank: formData.get("options_bank") || "-",
+        options_payment: formData.get("options_payment") || "-",
+        value: parseFloat(formData.get("value")) || 0,
+        payment_reference: formData.get("payment_reference") || "-",
+        // confirmed: formData.get("confirmed") === "true" ? "Sí" : "No",
+        note: formData.get("note") || "-",
+        // document_url: formData.get("document_url") || ""
+      };
 
-    window.paymentsList.push(payment);
+      window.paymentsList.push(payment);
 
-    const card = crearTarjetaAbono(payment);
-    paymentsContainer.appendChild(card);
+      const card = crearTarjetaAbono(payment);
+      paymentsContainer.appendChild(card);
 
-    actualizarTotalPagos();
-
-    modalPayment.style.display = "none";
-    formCreatePayment.reset();
-  });
-
-  // Delegar evento para eliminar tarjetas
-  paymentsContainer.addEventListener("click", function (e) {
-    if (e.target.classList.contains("delete-payment-button")) {
-      const id = parseInt(e.target.dataset.id);
-      paymentsList = paymentsList.filter(p => p.id !== id);
-      e.target.closest(".payment-card").remove();
       actualizarTotalPagos();
-    }
-  });
+
+      modalPayment.style.display = "none";
+      formCreatePayment.reset();
+    });
+
+  }
+  
+  // Delegar evento para eliminar tarjetas
+  if(paymentsContainer){
+    paymentsContainer.addEventListener("click", function (e) {
+      if (e.target.classList.contains("delete-payment-button")) {
+        const id = parseInt(e.target.dataset.id);
+        paymentsList = paymentsList.filter(p => p.id !== id);
+        e.target.closest(".payment-card").remove();
+        actualizarTotalPagos();
+      }
+    });
+  }
+  
 
   function actualizarTotalPagos() {
     const total = paymentsList.reduce((sum, p) => sum + p.value, 0);
     totalPaymentsInput.value = total.toFixed(2);
   }
   // Función para mostrar u ocultar el campo según el método
-  function toggleBankPlatformField() {
-    const selectedMethod = paymentMethodSelect.value;
-    const bankSelect = document.getElementById("payment_bank");
-    if (selectedMethod === "Transferencia") {
-      bankPlatformField.style.display = "block";
-      bankSelect.setAttribute("required", "required");
-    } else {
-      bankPlatformField.style.display = "none";
-      bankSelect.removeAttribute("required");
-      bankSelect.value = "";  // Limpiar selección
+  
+    function toggleBankPlatformField() {
+      if(paymentMethodSelect){
+        const selectedMethod = paymentMethodSelect.value;
+        const bankSelect = document.getElementById("payment_bank");
+        if (selectedMethod === "Transferencia") {
+          bankPlatformField.style.display = "block";
+          bankSelect.setAttribute("required", "required");
+        } else {
+          bankPlatformField.style.display = "none";
+          bankSelect.removeAttribute("required");
+          bankSelect.value = "";  // Limpiar selección
+        }
+      }
     }
-  }
+  
+  
 
   // Evento cuando cambia el método de pago
-  paymentMethodSelect.addEventListener("change", toggleBankPlatformField);
-
+  if(paymentMethodSelect){
+    paymentMethodSelect.addEventListener("change", toggleBankPlatformField);
+  }
   // Llamar al cargar la página (por si ya hay un valor seleccionado)
   toggleBankPlatformField();
 

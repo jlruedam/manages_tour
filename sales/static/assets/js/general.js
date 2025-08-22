@@ -1,1 +1,2 @@
-const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+// const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;

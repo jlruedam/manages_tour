@@ -10,14 +10,19 @@ function updateCarousel() {
   track.style.transform = `translateX(-${currentIndex * imageWidth}px)`;
 }
 
-nextButton.addEventListener('click', () => {
-  currentIndex = (currentIndex + 1) % images.length;
-  updateCarousel();
-});
+if(nextButton){
+  nextButton.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateCarousel();
+  });
+}
 
-prevButton.addEventListener('click', () => {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  updateCarousel();
-});
+if(prevButton){
+  prevButton.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateCarousel();
+  });
+}
+
 
 window.addEventListener('resize', updateCarousel); // ajuste en cambio de tamaño

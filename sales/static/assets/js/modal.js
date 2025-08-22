@@ -20,45 +20,47 @@ if(closeModal){
     modal.style.display = "none";   
     }
 }
+if(saleFormSubmitBtn){
+    saleFormSubmitBtn.addEventListener('click', async (e) => {
 
+        e.preventDefault();
 
-saleFormSubmitBtn.addEventListener('click', async (e) => {
+        const formData = new FormData(saleForm);
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const url = saleForm.dataset.url;
+        formData.append('payments', JSON.stringify(window.paymentsList));
 
-    e.preventDefault();
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                body: formData,
+                credentials: 'same-origin',
+                headers: {
+                    'X-CSRFToken': csrfToken
+                }
+            });
 
-    const formData = new FormData(saleForm);
-    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-    const url = saleForm.dataset.url;
-    formData.append('payments', JSON.stringify(window.paymentsList));
+            const data = await response.json();
 
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            body: formData,
-            credentials: 'same-origin',
-            headers: {
-                'X-CSRFToken': csrfToken
-            }
-        });
+            console.log("DATA:",data);
 
-        const data = await response.json();
+            alert(data);
+            // if (data.success) {
+            //     console.log('Venta')
+            // } else {
+            //     alert(data.message || "Hubo un error al crear el cliente.");
+            // }
+            location.reload();
 
-        console.log("DATA:",data);
+        } catch (error) {
+            console.error("Error al enviar el formulario:", error);
+            alert("Ocurrió un error inesperado.");
+        }
 
-        alert(data);
-        // if (data.success) {
-        //     console.log('Venta')
-        // } else {
-        //     alert(data.message || "Hubo un error al crear el cliente.");
-        // }
-        location.reload();
+    });
 
-    } catch (error) {
-        console.error("Error al enviar el formulario:", error);
-        alert("Ocurrió un error inesperado.");
-    }
+}
 
-});
 
 
 // Cerrar al hacer clic fuera del contenido

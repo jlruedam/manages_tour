@@ -1,0 +1,43 @@
+{% extends 'layouts/base.html' %}
+{% load humanize %}
+{% block content %}
+
+
+<div class="sections surface">
+    <div class="sections__header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+      <h2 class="titles">Listado de Clientes</h2>
+      <!-- <button class="btn-agregar" id="">+ Registrar Cliente</button> -->
+    </div>
+    {% if clients %}
+    <div class="table-clients-container">
+        <table class="tabla-clients display responsive nowrap" id="tabla-clients-general">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Documento</th>
+                    <th>Tipo Documento</th>
+                    <th>Nombre</th>
+                    <th>Lugar de origen</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+              
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+      <p>No hay tours reggistrados aún.</p>
+    {% endif %}
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+console.log("DEBERÍA ENTRAR AQUÍ");
+   getClientList();
+   
+});
+</script>
+{% endblock %}
+
+

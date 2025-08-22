@@ -9,6 +9,9 @@ const calculate_total_sale = () => {
     sale_total.value = value * quantity;
 }
 
-input_value.addEventListener('input', calculate_total_sale);
-sale_quantity.addEventListener('input', calculate_total_sale);
-sale_total.addEventListener('click', calculate_total_sale);
+if (input_value && sale_quantity && sale_total){
+    input_value.addEventListener('input', calculate_total_sale);
+    sale_quantity.addEventListener('input', calculate_total_sale);
+    sale_total.addEventListener('click', calculate_total_sale);
+}
+

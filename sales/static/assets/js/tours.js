@@ -3,13 +3,20 @@ document.addEventListener("DOMContentLoaded", function () {
   const openModalAddTourBtn = document.getElementById("openModalAddTourBtn");
   const closeBtn = document.getElementById("closeModalAddTourBtn");
 
-  openModalAddTourBtn.onclick = () => {
-    addTourModal.style.display = "block";
-  };
 
-  closeBtn.onclick = () => {
-    addTourModal.style.display = "none";
-  };
+  if(openModalAddTourBtn){
+    openModalAddTourBtn.onclick = () => {
+      addTourModal.style.display = "block";
+    };
+  }
+  
+
+  if(closeBtn){
+    closeBtn.onclick = () => {
+      addTourModal.style.display = "none";
+    };
+  }
+  
 
   window.onclick = (event) => {
     if (event.target === addTourModal) {

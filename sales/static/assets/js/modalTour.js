@@ -6,14 +6,19 @@ const closeModalTour = document.getElementById("closeModalTour");
 
 
 // Abrir modal
-modalTourBtn.onclick = function() {
-modalTour.style.display = "block";
+if(modalTourBtn){
+    modalTourBtn.onclick = function() {
+    modalTour.style.display = "block";
+    }
 }
 
 // Cerrar al hacer clic en la X
-closeModalTour.onclick = function() {
-modalTour.style.display = "none";
+if(closeModalTour){
+    closeModalTour.onclick = function() {
+    modalTour.style.display = "none";
+    }
 }
+
 
 // saleForm.addEventListener('submit'
 // )
